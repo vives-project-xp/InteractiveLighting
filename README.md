@@ -1,7 +1,7 @@
 # InteractiveLighting
 ![Alt text](/Yarno/Images/games-room-illuminated-with-leds-generative-ai_545448-18370.avif) 
 # Content #
-[Go to Heading section] (#-What's-our-goal?)
+
 * What's our goal?
 * How does it work?
 * Parts we used
