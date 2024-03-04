@@ -1,5 +1,5 @@
 # InteractiveLighting
-
+![Alt text](/Yarno/Images/games-room-illuminated-with-leds-generative-ai_545448-18370.avif)
 # Content #
 
 * What's our goal?
@@ -9,6 +9,7 @@
      - Hardware
      - Software
 * End conclusion
+* Members
 
 ## What's our goal? ##
 
@@ -16,7 +17,11 @@ We were given the task to make lighting for a gaming room that users can interac
 
 ## How does it work? ##
 
-## Parts we used ##
+We use multiple led strips that are connected to the gaming setup and these will project different lighting paterns depending on what sound is made in the game you're playing. 
+
+## Features ##
+
+
 
 ## Software we used ##
 
@@ -36,3 +41,11 @@ We were given the task to make lighting for a gaming room that users can interac
 * LedProfielen
 
 ## End conclusion ##
+
+
+
+## Member ##
+* Ibe Packo
+* Lennart Fonteyne 
+* Yarno Otte
+* Joren Vandewalle
