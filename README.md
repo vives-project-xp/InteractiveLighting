@@ -1,5 +1,5 @@
 # InteractiveLighting
-![Alt text](/Yarno/Images/games-room-illuminated-with-leds-generative-ai_545448-18370.avif = 450x450 ) 
+![Alt text](/Yarno/Images/games-room-illuminated-with-leds-generative-ai_545448-18370.avif) 
 # Content #
 
 * What's our goal?
@@ -42,7 +42,7 @@ We use multiple led strips that are connected to the gaming setup and these will
 
 ## End conclusion ##
 
-
+(eventuele problemen die we zijn tegengekomen, wat er beter kon, wat er goed was, ...)
 
 ## Member ##
 * Ibe Packo
