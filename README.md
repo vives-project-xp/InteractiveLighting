@@ -4,7 +4,7 @@
 
 * What's our goal?
 * How does it work?
-* Parts we used
+* Features
 * Requirements
      - Hardware
      - Software
