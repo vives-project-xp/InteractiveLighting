@@ -1,5 +1,5 @@
 # InteractiveLighting
-![Alt text](/Yarno/Images/games-room-illuminated-with-leds-generative-ai_545448-18370.avif)
+![Alt text](/Yarno/Images/games-room-illuminated-with-leds-generative-ai_545448-18370.avif =450*450 ) 
 # Content #
 
 * What's our goal?
