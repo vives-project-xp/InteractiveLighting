@@ -32,6 +32,10 @@ We use multiple led strips that are connected to the gaming setup and these will
 
 ## Expandability ##
 
+This project has been designed with expandability in mind, so that future enhancements and additions can be made without significant rework. Some examples are:
+
+* 
+
 
 
 ## Software we used ##
