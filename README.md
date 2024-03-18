@@ -32,6 +32,10 @@ We use multiple led strips that are connected to the gaming setup and these will
 
 ## Expandability ##
 
+This project has been designed with expandability in mind, so that future enhancements and additions can be made without significant rework. Some examples are:
+
+* 
+
 
 
 ## Software we used ##
@@ -48,7 +52,7 @@ We use multiple led strips that are connected to the gaming setup and these will
 * WS2812 LED Strips: Addressable LED strips capable of displaying a wide range of colors and patterns.
 * Ceiling Mounting Hardware: Initially considered for mounting the LED strips, later replaced with a panel with velcro for easier installation and flexibility.
 * JST Connectors: Used for connecting and disconnecting components easily.
-* Velcro:
+* Velcro: This serves as a versatile mounting solution for attaching the LED strips to a panel or surface. It offers flexibility and adjustability in the placement of the lighting components.
 
 ## Changes during the project ##
 
