@@ -8,15 +8,15 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },{
+      path: '/effect',
+      name: 'effect',
+      component: () => import('../views/EffectView.vue')
     },
     {
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue')
-    },{
-      path: '/effect',
-      name: 'effect',
-      component: () => import('../views/EffectView.vue')
     }
   ]
 })

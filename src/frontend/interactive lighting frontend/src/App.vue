@@ -1,22 +1,32 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from "vue-router";
+
 </script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" id="navbarnolink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Interactive lighting</a>
 
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/About">About</RouterLink>
-        <RouterLink to="/Effects">Effects</RouterLink>
-      </nav>
+      <div id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <RouterLink to="/">Home</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink to="/Effect">Effect</RouterLink>
+          </li><li class="nav-item">
+            <RouterLink to="/About">About</RouterLink>
+          </li>
+        </ul>
+      </div>
     </div>
-  </header>
-
+  </nav>
+  
   <RouterView />
+  
 </template>
+
+
 
 <style scoped>
 header {
@@ -31,53 +41,52 @@ header {
 
 nav {
   width: 100%;
-  font-size: 12px;
-  text-align: center;
+  font-size: 16px;
   margin-top: 2rem;
+  background-color: rgb(155, 208, 183);
+  color: black;
+  border-radius: 2cap;
+  box-shadow: 5px 5px 20px rgba(155, 208, 183, 0.8), -5px -5px 20px rgba(171, 185, 179, 0.8);
+}
+
+nav a:first-of-type {
+  border: 0;
+  color: black;
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  color: rgb(25, 63, 157);
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.nav-item:hover {
+  background-color: rgba(88, 86, 86, 0.597);
 }
 
 nav a {
   display: inline-block;
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  border-left: 1px solid white;
 }
 
-nav a:first-of-type {
-  border: 0;
+#navbarnolink{
+  background-color: transparent;
+  
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+footer {
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(119, 114, 114);
+  color: black;
+  height: 150px;
+  align-content: center;
 }
+
+#memberlist {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+
 </style>

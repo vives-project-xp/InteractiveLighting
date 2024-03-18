@@ -1,9 +1,7 @@
 const mqtt = require("mqtt");
 const url = "mqtt://mqtt.devbit.be:1883";
 const options = {
-  clean: true,
   connectTimeout: 4000,
-  clientId: "InteractiveLighting_" + Math.random().toString(36),
   username: "",
   password: "",
 };
@@ -21,11 +19,8 @@ client.on("reconnect", (error) => {
 
 const publish = (topic, message) => {
   console.log("Publishing to " + topic + ": " + message);
-  client.publish(topic, message, function (error) {
-    if (error) {
-      console.log("Error: ", error);
-    }
-  });
+  client.publish(topic, message.toString()
+  );
 };
 
 module.exports = {
