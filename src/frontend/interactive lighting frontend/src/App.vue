@@ -1,12 +1,15 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-
 </script>
 <template>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg" id="fullNavbar">
     <div class="container-fluid">
-      <a class="navbar-brand" id="navbarnolink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Interactive lighting</a>
-
+      <a
+        class="navbar-brand"
+        id="navbarnolink"
+        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        target="_blank"
+        >Interactive lighting</a>
       <div id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -14,24 +17,23 @@ import { RouterLink, RouterView } from "vue-router";
           </li>
           <li class="nav-item">
             <RouterLink to="/Effect">Effect</RouterLink>
-          </li><li class="nav-item">
+          </li>
+          <li class="nav-item">
             <RouterLink to="/About">About</RouterLink>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  
   <RouterView />
-  
 </template>
 
-
-
 <style scoped>
-header {
+body {
   line-height: 1.5;
   max-height: 100vh;
+  max-width: 100vw;
+  font-size: 1vh;
 }
 
 .logo {
@@ -41,12 +43,13 @@ header {
 
 nav {
   width: 100%;
-  font-size: 16px;
+  font-size: 2vh;
   margin-top: 2rem;
   background-color: rgb(155, 208, 183);
   color: black;
   border-radius: 2cap;
-  box-shadow: 5px 5px 20px rgba(155, 208, 183, 0.8), -5px -5px 20px rgba(171, 185, 179, 0.8);
+  box-shadow: 5px 5px 20px rgba(155, 208, 183, 0.8),
+    -5px -5px 20px rgba(171, 185, 179, 0.8);
 }
 
 nav a:first-of-type {
@@ -68,25 +71,7 @@ nav a {
   border-left: 1px solid white;
 }
 
-#navbarnolink{
+#navbarnolink {
   background-color: transparent;
-  
 }
-
-footer {
-  bottom: 0;
-  width: 100%;
-  background-color: rgb(119, 114, 114);
-  color: black;
-  height: 150px;
-  align-content: center;
-}
-
-#memberlist {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-}
-
-
 </style>

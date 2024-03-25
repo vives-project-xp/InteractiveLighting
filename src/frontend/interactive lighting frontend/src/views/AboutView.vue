@@ -103,7 +103,7 @@
 body {
   background-color: #000f2c;
   color: wheat;
-  
+  font-size: medium;
   justify-content: center;
   background-image: url("../assets/Images/image.png");
   background-size: 100vh;
@@ -124,8 +124,8 @@ body {
 }
 
 .AboutH1{
-  
-  font-size: 3em; 
+  padding-top: 2%;
+  font-size: 2.5em; 
   color: rgb(223, 201, 160);
   text-align: center;
   text-shadow: 5px 5px 20px wheat, -5px -5px 20px wheat}
