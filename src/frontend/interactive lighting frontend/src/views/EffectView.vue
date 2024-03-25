@@ -1,21 +1,21 @@
 <template>
   <main>
-  <div class="effect">
-    <h1 class="AboutH1">This is the effect page. Here you can choose effects for the ledstrip</h1>
-    <input type="text" v-model="searchQuery" placeholder="Search effects..." class="form-control mb-3" id="searchBar">
-    <div class="d-flex flex-wrap justify-content-center">
-      <div v-for="(effect, index) in filteredEffects" :key="index">
-        <div class="card">
-          <div class="d-flex p-1">
-            <div class="card-body">
-              <h5 class="card-title">{{ effect }}</h5>
-              <button type="button" class="btn btn-primary" id="buttonEffect" @click="setEffect(index)">Set {{ effect }}</button>
+    <div class="effect">
+      <h1 class="AboutH1">Choose your effect</h1>
+      <input type="text" v-model="searchQuery" placeholder="Search effects..." class="form-control mb-3" id="searchBar">
+      <div class="d-flex flex-wrap justify-content-center">
+        <div v-for="(effect, index) in filteredEffects" :key="index">
+          <div class="card">
+            <div class="d-flex p-1">
+              <div class="card-body">
+                <h5 class="card-title">{{ effect.effect }}</h5>
+                <button type="button" class="btn btn-primary" id="buttonEffect" @click="setEffect(effect.index)">Set {{ effect.effect }}</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </main>
 </template>
 
@@ -26,24 +26,27 @@ export default {
   name: 'EffectView',
   data() {
     return {
-      effects: ['Effect1', 'Effect2', 'Effect3'],
+      effects: [],
       searchQuery: ''
     }
   },
   mounted() {
+    // Call the method to fetch effects list
     this.getEffectList();
   },
   computed: {
     filteredEffects() {
+      // Filter the effects based on the search query
       return this.effects.filter(effect =>
-        effect.toLowerCase().includes(this.searchQuery.toLowerCase())
+        effect.effect.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
   },
   methods: {
     getEffectList() {
+      // Fetch effects list from the provided URL
       axios
-        .get("http://ilighting.local/json/eff")
+        .get("http://localhost:3000/effect")
         .then((response) => {
           console.log(response.data);
           this.effects = response.data;
@@ -53,20 +56,26 @@ export default {
         });
     },
     setEffect(index) {
-      const request = {
-        fx: index
-      };
-      axios.post('http://localhost:3000/effect', request)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      // Set the selected effect
+      const selectedEffect = this.effects.find(effect => effect.index === index);
+      if (selectedEffect) {
+        const request = {
+          fx: selectedEffect.index
+        };
+        axios.post('http://localhost:3000/effect', request)
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     }
   } 
 }
 </script>
+
+
 <style>
 body {
   background-color: #000f2c;
