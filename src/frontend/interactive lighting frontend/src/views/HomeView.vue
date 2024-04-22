@@ -1,53 +1,61 @@
-<script setup></script>
+
 <template>
   <main>
-    <div id="AboutH1">
-      <h1 class="AboutH1">Interactive Lighting</h1>
-    </div>
-    <div class="ledSettings">
-        <div class="grid-container">
-          <input type="color" class="grid-item" id="colorpicker">
-          <div class="right-side-colorpicker">
-            <div class="grid-item"><button class="color-button red" @click="ChangeColorValue('#ff0000')"></button></div>
-            <div class="grid-item"><button class="color-button blue" @click="ChangeColorValue('#0000ff')"></button></div>
-            <div class="grid-item"><button class="color-button green" @click="ChangeColorValue('#00ff00')"></button></div>
-            <div class="grid-item"><button class="color-button white" @click="ChangeColorValue('#ffffff')"></button></div>
-        </div>
+      <h1 class="H1Style">Interactive Lighting</h1>
+    <!-- Leds -->
+    <div class="leds">
+      
+      <!-- ColorSettings -->
+      <div class="ledControls" id="colorSettings">
+        <h2 class="grid-item-colorSettings" id="titelColor">Color</h2>
+        <!-- Colorpicker -->
+        <!-- <div class="grid-item-colorSettings" id="colorpickerdiv"> -->
+          <input type="color" class="grid-item-colorSettings" id="colorpicker" value="#ffa31a" @input="UpdateColorValue()">
+        <!-- </div> -->
+        <!-- primary color buttons -->
+        <div class="grid-item-colorSettings"><button class="primary-color-btn" id="primary-btn-red" @click="ChangeColorValue('#ff0000')">Red</button></div>
+        <div class="grid-item-colorSettings"><button class="primary-color-btn" id="primary-btn-blue" @click="ChangeColorValue('#0000ff')">Blue</button></div>
+        <div class="grid-item-colorSettings"><button class="primary-color-btn" id="primary-btn-green" @click="ChangeColorValue('#00ff00')">Green</button></div>
+        <div class="grid-item-colorSettings"><button class="primary-color-btn" id="primary-btn-white" @click="ChangeColorValue('#ffffff')">White</button></div>
       </div>
-      <div class="col" id="LedControlButtons">
-        <div class="LedControlButtons">
+      <!-- LedSettings -->
+      <div class="ledControls" id="ledSettings">
+        <h2 class="grid-item-ledControls" id="titelLedSettings">Led Settings</h2>
+        <div class="grid-item-ledControls" id="onOffDiv">
           <h2>On/Off</h2>
-          <button type="button" id="btnOnOff" @click="toggleLed()">
-            <i style="font-size:24px" class="fa">&#xf011;</i>
+          <button type="button" class="btnLedSettings" id="onOffbtn" @click="toggleLed()">
+            <i id="OnOffIcon" style="font-size:24px" class="fa">&#xf011;</i>
           </button>
         </div>
-        <div class="LedControlButtons">
+        <div class="grid-item-ledControls" id="brightnessDiv">
           <h2>Brightness</h2>
-          <input class="slider" type="range" id="brightness" min="0" max="255" value="50"
+          <input type="range" id="brightnessslider" min="0" max="255" value="50"
             @input="getBrightnessValue()" />
         </div>
-        <div class="LedControlButtons">
+        <div class="grid-item-ledControls" id="randomEffectDiv">
           <h2>Random Effect</h2>
-          <div id="buttonRandomEffect" >
-            <button type="button" class="buttonRandomEffect" @click="setRandomEffect()">
+          <div id="buttonRandomEffect">
+            <button type="button" class="btnLedSettings" id="randomEffectbtn" @click="setRandomEffect()">
               <i style="font-size: 24px;" class="fa">&#xf6cf</i>
             </button>
           </div>
         </div>
+        <br />
+        
       </div>
     </div>
-    
+
   </main>
   <footer>
     <div class="footer-content">
-        <div class="footer-section contact">
-            <h2>Contact Us</h2>
-            <ul>
-                <li><i class="fa fa-envelope"></i> info@example.com</li>
-                <li><i class="fa-solid fa-phone-volume"></i> +32 33 56 63</li>
-                <li><i class="fa-solid fa-location-dot"></i> Vives Brugge Xaverianenstraat</li>
-            </ul>
-        </div>
+      <div class="footer-section contact">
+        <h2>Contact Us</h2>
+        <ul>
+          <li><i class="fa fa-envelope"></i> info@example.com</li>
+          <li><i class="fa-solid fa-phone-volume"></i> +32 33 56 63</li>
+          <li><i class="fa-solid fa-location-dot"></i> Vives Brugge Xaverianenstraat</li>
+        </ul>
+      </div>
     </div>
   </footer>
 </template>
@@ -68,6 +76,7 @@ export default {
       const payload = {
         color: color,
       };
+      console.log(payload);
       axios
         .post("http://localhost:3000/color", payload)
         .then((response) => {
@@ -116,6 +125,7 @@ export default {
         });
     },
     ChangeColorValue(color) {
+      this.updateColorPickerValue(color); // Update color picker value
       const payload = {
         color: color,
       };
@@ -127,6 +137,9 @@ export default {
         .catch((error) => {
           console.error(error);
         });
+    },
+    updateColorPickerValue(color) {
+      document.getElementById("colorpicker").value = color;
     }
   },
 };
@@ -159,49 +172,207 @@ main {
   border-radius: 7px;
 }
 
-#btnOnOff{
-  background-color:rgb(155, 208, 183);
-  width: 25%;
-}
-
-#buttonRandomEffect{
-  background-color:rgb(155, 208, 183);
-  width: 25%;
-  
-}
-
-footer{
-    background-color: black;
-    padding: 5px;
-    border-radius: 10px;
-}
-
-.footer-section ul{
-    list-style: none;
-    padding:0;
-}
-.grid-container {
-  display: grid;
-  width: 50%;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 100px);
-  height: 100%;
-  gap: 0;
-}
-.grid-item {
-  background-color: #ddd; /* Background color */
-  border: 1px solid #999; /* Border */
-  display: flex; /* Center content horizontally and vertically */
+.buttonRandomEffect{
+  text-align: center;
   justify-content: center;
-  align-items: center;
-  font-size: 1.2rem; /* Font size */
 }
-.ledDiv {
+
+footer {
+  background-color: black;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.leds{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+}
+
+.ledControls {
+  width: 50%;
+  height: 55vh;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5%;
+}
+
+#colorSettings {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2%;
+}
+
+#titelColor{
+  grid-area: span 1 / span 4;
+}
+
+.grid-item-colorSettings {
   width: 100%;
+  height: 100%;
   background-color: transparent;
+  justify-content: center;
+  align-items: center;
+}
+
+#colorpicker {
+  width: 100%;
+  height: 100%;
+  grid-area: span 4 / span 3;
+  border-radius: 20px;
+}
+
+.primary-color-btn {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  font-size: 2.5vh;
+  font-weight: bold;
+  color: white;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 1px;
+}
+
+#primary-btn-red {
+  background-color: red;
+}
+#primary-btn-red:active{
+box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+
+
+#primary-btn-blue {
+  background-color: blue;
+}
+#primary-btn-blue:active{
+box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+
+
+#primary-btn-green {
+  background-color: green;
+}
+#primary-btn-green:active{
+box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+
+
+#primary-btn-white {
+  background-color: white;
+}
+#primary-btn-white:active{
+box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+
+#ledSettings{
+  display: grid;
+  grid-template-rows: repeat(4, 1fr); 
+  gap: 5%;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-item-ledControls{
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#onOffDiv{
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#onOffbtn{
+  width: 100%;
+  height: 50%;
+  background-color: rgb(155, 208, 183);
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: none;
+}
+
+#onOffbtn:active{
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+
+#brightnessDiv{
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#brightnessslider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 2vh;
+  border-radius: 5px;  
+  background: #d3d3d3;
+  outline: none;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+#brightnessslider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: rgb(155, 208, 183);
+  cursor: pointer;
+}
+
+#brightnessslider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgb(155, 208, 183);
+}
+
+#randomEffectDiv{
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#buttonRandomEffect{
+  width: 100%;
+  height: 50%;
+  background-color: rgb(155, 208, 183);
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: none;
+  display:flex;
+}
+
+#buttonRandomEffect:active{
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
 }
 </style>

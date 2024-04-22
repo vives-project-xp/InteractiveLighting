@@ -1,6 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const effects = require('./effects.js');
 const mqtt = require('./mqtt.js');
+
+
+router.get('/', (req, res) => {
+    res.send('Hello World!');
+    }
+);
 
 router.post('/onof', (req, res) => {
   try {
@@ -79,4 +86,125 @@ router.post('/effect', (req, res) => {
   }
 });
 
+router.get('/effect', (req, res) => {
+  const effectList = effects.getEffects();
+  res.send(effectList);
+});
 module.exports = router;
+
+// vanaf hier de nodige docs voor swagger
+/**
+ * @swagger
+ * tags:
+ *   name: ILBackend
+ *   description: This lists all the endpoints for the Interactive Lighting backend API
+ * /:
+ *   get:
+ *     summary: Hello World
+ *     description: With this you can check whether the backend is running
+ *     responses:
+ *       '200':
+ *         description: Successful response
+ *         schema:
+ *           type: string
+ *
+ *
+ * /onof:
+ *   post:
+ *     summary: Publish On/Off state
+ *     description: Publishes the On/Off state of the lights to the MQTT broker
+ *     parameters:
+ *       - in: body
+ *         name: on
+ *         description: On/Off state
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             on:
+ *               type: boolean
+ *     responses:
+ *       '200':
+ *         description: On/Off state published successfully
+ *       '500':
+ *         description: Error publishing On/Off state
+ *
+ * /color:
+ *   post:
+ *     summary: Publish color
+ *     parameters:
+ *       - in: body
+ *         name: color
+ *         description: Hex color code
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             color:
+ *               type: string
+ *               format: color
+ *           example: { "color": "#FF0000" }
+ *     
+ *     description: Publishes the color to the MQTT broker
+ *     responses:
+ *       '200':
+ *         description: Color published successfully
+ *       '500':
+ *         description: Error publishing color
+ *
+ * /random:
+ *   post:
+ *     summary: Publish random effect
+ *     responses:
+ *       '200':
+ *         description: Random effect published successfully
+ *       '500':
+ *         description: Error publishing random effect
+ *
+ * /brightness:
+ *   post:
+ *     summary: Publish brightness
+ *     parameters:
+ *       - in: body
+ *         name: brightness
+ *         description: Brightness value
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             brightness:
+ *               type: integer
+ *     responses:
+ *       '200':
+ *         description: Brightness published successfully
+ *       '500':
+ *         description: Error publishing brightness
+ *
+ * /effect:
+ *   post:
+ *     summary: Publish effect
+ *     parameters:
+ *       - in: body
+ *         name: fx
+ *         description: Effect data
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             fx:
+ *               type: integer
+ *     responses:
+ *       '200':
+ *         description: Effect published successfully
+ *       '500':
+ *         description: Error publishing effect
+ *   get:
+ *     summary: Get available effects
+ *     responses:
+ *       '200':
+ *         description: Successful response
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: string
+ */

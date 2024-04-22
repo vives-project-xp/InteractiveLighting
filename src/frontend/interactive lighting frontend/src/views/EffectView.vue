@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="effect">
-      <h1 class="AboutH1">Choose your effect</h1>
+      <h1 class="H1Style">Choose your effect</h1>
       <input type="text" v-model="searchQuery" placeholder="Search effects..." class="form-control mb-3" id="searchBar">
       <div class="d-flex flex-wrap justify-content-center">
         <div v-for="(effect, index) in filteredEffects" :key="index">
@@ -9,7 +9,8 @@
             <div class="d-flex p-1">
               <div class="card-body">
                 <h5 class="card-title">{{ effect.effect }}</h5>
-                <button type="button" class="btn btn-primary" id="buttonEffect" @click="setEffect(effect.index)">Set {{ effect.effect }}</button>
+                <button type="button" class="btn btn-primary" id="buttonEffect" @click="setEffect(effect.index)">Set {{
+        effect.effect }}</button>
               </div>
             </div>
           </div>
@@ -71,7 +72,7 @@ export default {
           });
       }
     }
-  } 
+  }
 }
 </script>
 
@@ -108,34 +109,36 @@ main {
   color: black;
 }
 
-.effect{
+.effect {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('your-image.jpg');
   background-size: cover;
   background-position: center;
   font-family: Arial, sans-serif;
-  
+
 }
-td{
-  padding:50px;
+
+td {
+  padding: 50px;
 }
-table{
+
+table {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('your-image.jpg');
   background-size: cover;
   background-position: center;
   font-family: Arial, sans-serif;
 }
-.card{
+
+.card {
   width: 17rem;
-  background-color:rgb(0, 15, 44, 0.2);
-  border-radius: 10px; 
-  box-shadow: 0 0 20px rgba(155, 208, 183); 
+  background-color: rgb(0, 15, 44, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(155, 208, 183);
   margin: 10px;
   color: wheat;
 }
 
-#buttonEffect{
-  background-color:rgb(155, 208, 183) ;
+#buttonEffect {
+  background-color: rgb(155, 208, 183);
   color: black;
 }
-
 </style>

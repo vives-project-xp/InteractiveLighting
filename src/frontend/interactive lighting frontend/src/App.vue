@@ -4,12 +4,8 @@ import { RouterLink, RouterView } from "vue-router";
 <template>
   <nav class="navbar navbar-expand-lg" id="fullNavbar">
     <div class="container-fluid">
-      <a
-        class="navbar-brand"
-        id="navbarnolink"
-        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-        target="_blank"
-        >Interactive lighting</a>
+      <a class="navbar-brand" id="navbarnolink" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        target="_blank">Interactive lighting</a>
       <div id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -44,7 +40,7 @@ body {
 nav {
   width: 100%;
   font-size: 2vh;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   background-color: rgb(155, 208, 183);
   color: black;
   border-radius: 2cap;
@@ -74,4 +70,6 @@ nav a {
 #navbarnolink {
   background-color: transparent;
 }
+
+
 </style>
