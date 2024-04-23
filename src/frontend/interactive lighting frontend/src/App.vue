@@ -43,7 +43,7 @@ nav {
   margin-top: 0.5rem;
   background-color: rgb(155, 208, 183);
   color: black;
-  border-radius: 2cap;
+  border-radius: 7px;
   box-shadow: 5px 5px 20px rgba(155, 208, 183, 0.8),
     -5px -5px 20px rgba(171, 185, 179, 0.8);
 }

@@ -51,9 +51,8 @@
       <div class="footer-section contact">
         <h2>Contact Us</h2>
         <ul>
-          <li><i class="fa fa-envelope"></i> info@example.com</li>
-          <li><i class="fa-solid fa-phone-volume"></i> +32 33 56 63</li>
-          <li><i class="fa-solid fa-location-dot"></i> Vives Brugge Xaverianenstraat</li>
+          <li><a id="footerLink" href="https://github.com/vives-project-xp/InteractiveLighting"><i class="fa-brands fa-github"></i> Github</a></li>
+          <li><i class="fa-solid fa-compass"></i> Vives Brugge Xaverianenstraat</li>
         </ul>
       </div>
     </div>
@@ -164,7 +163,7 @@ body {
 }
 
 main {
-  height: 100%;
+  height: 75%;
   width: 100%;
   padding: 2vh 0vh 2vh 0vh;
   margin: 2vh 0vh 2vh 0vh;
@@ -178,14 +177,26 @@ main {
 }
 
 footer {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 7px;
   padding: 5px;
-  border-radius: 10px;
 }
 
 .footer-section ul {
   list-style: none;
-  padding: 0;
+  color: wheat;
+  display: flex;
+  justify-content: center;
+  font-size: medium;
+}
+
+.footer-section ul li {
+  color: wheat;
+  margin-right: 1vw;
+}
+
+#footerLink {
+  color: wheat;
 }
 
 .leds{
@@ -229,7 +240,9 @@ footer {
   height: 100%;
   grid-area: span 4 / span 3;
   border-radius: 20px;
+  display: block;
 }
+
 
 .primary-color-btn {
   width: 100%;
@@ -238,10 +251,8 @@ footer {
   border: none;
   border-radius: 5px;
   font-size: 2.5vh;
-  font-weight: bold;
-  color: white;
-  -webkit-text-stroke-color: black;
-  -webkit-text-stroke-width: 1px;
+  color: black;
+  font-weight: 900;
 }
 
 #primary-btn-red {
@@ -252,7 +263,6 @@ box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   transform: translateY(1px);
 }
 
-
 #primary-btn-blue {
   background-color: blue;
 }
@@ -261,7 +271,6 @@ box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   transform: translateY(1px);
 }
 
-
 #primary-btn-green {
   background-color: green;
 }
@@ -269,7 +278,6 @@ box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
 box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   transform: translateY(1px);
 }
-
 
 #primary-btn-white {
   background-color: white;
@@ -313,6 +321,11 @@ box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   border: none;
 }
 
+#onOffbtn:hover {
+  background-color: rgb(217, 151, 116);
+  transition: 1000ms;
+}
+
 #onOffbtn:active{
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   transform: translateY(1px);
@@ -346,6 +359,11 @@ box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
+#brightnessslider::-webkit-slider-thumb:hover{
+  background-color: rgb(217, 151, 116);
+  transition: 1000ms;
+}
+
 #brightnessslider::-moz-range-thumb {
   width: 25px;
   height: 25px;
@@ -369,6 +387,11 @@ box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   border: none;
   display:flex;
+}
+
+#buttonRandomEffect:hover {
+  background-color: rgb(217, 151, 116);
+  transition: 1000ms;
 }
 
 #buttonRandomEffect:active{

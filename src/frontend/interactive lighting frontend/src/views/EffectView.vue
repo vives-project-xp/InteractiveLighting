@@ -109,13 +109,17 @@ main {
   color: black;
 }
 
+#searchBar:hover {
+  background-color: rgb(217, 151, 116);
+  transition: 1000ms;
+}
+
 .effect {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('your-image.jpg');
   background-size: cover;
   background-position: center;
   font-family: Arial, sans-serif;
 
-}
+}  
 
 td {
   padding: 50px;
