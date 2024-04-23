@@ -70,13 +70,13 @@ On this page you can control the general led settings. The solid color, the brig
 There is a left side and a right side. On the left side there is a big colorpicker to choose your own color. Next to the colorpicker there are 4 button for pure blue, red, green or white color.
 On the right side, there is a button to turn the lights on or off. Below you can choose the brightness and a random effect.
 
-![Home page](../InteractiveLighting/documentation/Images/homepage.png)
+![Home page](./documentation/Images/homepage.png)
 
 #### Effect page
 
 Here, you can choose from all the effects available in WLED. You can use the search bar to find a specific effect, or you can browse through the entire list to select one. Allowing you to create a unique atmosphere for the gaming room.
 
-![Effect page](../InteractiveLighting/documentation/Images/effectpage.png)
+![Effect page](./documentation/Images/effectpage.png)
 
 #### About page
 
