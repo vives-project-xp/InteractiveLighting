@@ -1,22 +1,26 @@
-
 <template>
   <main>
-      <h1 class="H1Style">Interactive Lighting</h1>
+    <h1 class="H1Style">Interactive Lighting</h1>
     <!-- Leds -->
     <div class="leds">
-      
+
       <!-- ColorSettings -->
       <div class="ledControls" id="colorSettings">
         <h2 class="grid-item-colorSettings" id="titelColor">Color</h2>
         <!-- Colorpicker -->
         <!-- <div class="grid-item-colorSettings" id="colorpickerdiv"> -->
-          <input type="color" class="grid-item-colorSettings" id="colorpicker" value="#ffa31a" @input="UpdateColorValue()">
+        <input type="color" class="grid-item-colorSettings" id="colorpicker" value="#ffa31a"
+          @input="UpdateColorValue()">
         <!-- </div> -->
         <!-- primary color buttons -->
-        <div class="grid-item-colorSettings"><button class="primary-color-btn" id="primary-btn-red" @click="ChangeColorValue('#ff0000')">Red</button></div>
-        <div class="grid-item-colorSettings"><button class="primary-color-btn" id="primary-btn-blue" @click="ChangeColorValue('#0000ff')">Blue</button></div>
-        <div class="grid-item-colorSettings"><button class="primary-color-btn" id="primary-btn-green" @click="ChangeColorValue('#00ff00')">Green</button></div>
-        <div class="grid-item-colorSettings"><button class="primary-color-btn" id="primary-btn-white" @click="ChangeColorValue('#ffffff')">White</button></div>
+        <div class="grid-item-colorSettings"><button class="primary-color-btn" id="primary-btn-red"
+            @click="ChangeColorValue('#ff0000')">Red</button></div>
+        <div class="grid-item-colorSettings"><button class="primary-color-btn" id="primary-btn-blue"
+            @click="ChangeColorValue('#0000ff')">Blue</button></div>
+        <div class="grid-item-colorSettings"><button class="primary-color-btn" id="primary-btn-green"
+            @click="ChangeColorValue('#00ff00')">Green</button></div>
+        <div class="grid-item-colorSettings"><button class="primary-color-btn" id="primary-btn-white"
+            @click="ChangeColorValue('#ffffff')">White</button></div>
       </div>
       <!-- LedSettings -->
       <div class="ledControls" id="ledSettings">
@@ -29,19 +33,15 @@
         </div>
         <div class="grid-item-ledControls" id="brightnessDiv">
           <h2>Brightness</h2>
-          <input type="range" id="brightnessslider" min="0" max="255" value="50"
-            @input="getBrightnessValue()" />
+          <input type="range" id="brightnessslider" min="0" max="255" value="50" @input="getBrightnessValue()" />
         </div>
         <div class="grid-item-ledControls" id="randomEffectDiv">
-          <h2>Random Effect</h2>
-          <div id="buttonRandomEffect">
-            <button type="button" class="btnLedSettings" id="randomEffectbtn" @click="setRandomEffect()">
-              <i style="font-size: 24px;" class="fa">&#xf6cf</i>
-            </button>
-          </div>
+          <h2>Random Effect</h2><br />
+          <button type="button" class="btnLedSettings" id="randomEffectbtn" @click="setRandomEffect()">
+            <i class="gg-dice-6"></i>
+          </button>
         </div>
         <br />
-        
       </div>
     </div>
 
@@ -51,7 +51,8 @@
       <div class="footer-section contact">
         <h2>Contact Us</h2>
         <ul>
-          <li><a id="footerLink" href="https://github.com/vives-project-xp/InteractiveLighting"><i class="fa-brands fa-github"></i> Github</a></li>
+          <li><a id="footerLink" href="https://github.com/vives-project-xp/InteractiveLighting"><i
+                class="fa-brands fa-github"></i> Github</a></li>
           <li><i class="fa-solid fa-compass"></i> Vives Brugge Xaverianenstraat</li>
         </ul>
       </div>
@@ -171,11 +172,6 @@ main {
   border-radius: 7px;
 }
 
-.buttonRandomEffect{
-  text-align: center;
-  justify-content: center;
-}
-
 footer {
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 7px;
@@ -199,7 +195,7 @@ footer {
   color: wheat;
 }
 
-.leds{
+.leds {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -223,7 +219,7 @@ footer {
   margin-right: 2%;
 }
 
-#titelColor{
+#titelColor {
   grid-area: span 1 / span 4;
 }
 
@@ -258,44 +254,48 @@ footer {
 #primary-btn-red {
   background-color: red;
 }
-#primary-btn-red:active{
-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+
+#primary-btn-red:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   transform: translateY(1px);
 }
 
 #primary-btn-blue {
   background-color: blue;
 }
-#primary-btn-blue:active{
-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+
+#primary-btn-blue:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   transform: translateY(1px);
 }
 
 #primary-btn-green {
   background-color: green;
 }
-#primary-btn-green:active{
-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+
+#primary-btn-green:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   transform: translateY(1px);
 }
 
 #primary-btn-white {
   background-color: white;
 }
-#primary-btn-white:active{
-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+
+#primary-btn-white:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   transform: translateY(1px);
 }
 
-#ledSettings{
+#ledSettings {
   display: grid;
-  grid-template-rows: repeat(4, 1fr); 
+  grid-template-rows: repeat(4, 1fr);
   gap: 5%;
   justify-content: center;
   align-items: center;
 }
 
-.grid-item-ledControls{
+.grid-item-ledControls {
   width: 100%;
   height: 100%;
   background-color: transparent;
@@ -304,14 +304,19 @@ box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   margin-top: 10px;
 }
 
-#onOffDiv{
+.btnLedSettings {
+  background-color: transparent;
+  border: none;
+}
+
+#onOffDiv {
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
 }
 
-#onOffbtn{
+#onOffbtn {
   width: 100%;
   height: 50%;
   background-color: rgb(155, 208, 183);
@@ -326,12 +331,12 @@ box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   transition: 1000ms;
 }
 
-#onOffbtn:active{
+#onOffbtn:active {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   transform: translateY(1px);
 }
 
-#brightnessDiv{
+#brightnessDiv {
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -341,8 +346,8 @@ box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
 #brightnessslider {
   -webkit-appearance: none;
   width: 100%;
-  height: 2vh;
-  border-radius: 5px;  
+  height: 1.5vh;
+  border-radius: 5px;
   background: #d3d3d3;
   outline: none;
   -webkit-transition: .2s;
@@ -352,33 +357,33 @@ box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
 #brightnessslider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%; 
+  width: 3.5vh;
+  height: 3.5vh;
+  border-radius: 50%;
   background: rgb(155, 208, 183);
   cursor: pointer;
 }
 
-#brightnessslider::-webkit-slider-thumb:hover{
+#brightnessslider::-webkit-slider-thumb:hover {
   background-color: rgb(217, 151, 116);
   transition: 1000ms;
 }
 
 #brightnessslider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
+  width: 1vw;
+  height: 1vh;
   border-radius: 50%;
   background: rgb(155, 208, 183);
 }
 
-#randomEffectDiv{
+#randomEffectDiv {
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
 }
 
-#buttonRandomEffect{
+#randomEffectbtn {
   width: 100%;
   height: 50%;
   background-color: rgb(155, 208, 183);
@@ -386,16 +391,61 @@ box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   align-items: center;
   border-radius: 10px;
   border: none;
-  display:flex;
+  display: flex;
 }
 
-#buttonRandomEffect:hover {
+.gg-dice-6 {
+  display: block;
+  transform: scale(var(--ggs, 1));
+  position: relative;
+  box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+  border: 2px solid;
+  border-radius: 3px;
+}
+
+.gg-dice-6::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  background: currentColor;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 4px;
+  left: 2px;
+  top: 2px;
+  box-shadow:
+    0 5px 0, 0 10px 0,
+    10px 0 0, 10px 5px 0,
+    10px 10px 0;
+}
+
+#randomEffectbtn:hover {
   background-color: rgb(217, 151, 116);
   transition: 1000ms;
 }
 
-#buttonRandomEffect:active{
+#randomEffectbtn:active {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
   transform: translateY(1px);
+}
+
+@media screen and (max-width: 600px) {
+  .leds {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ledControls {
+    width: 100%;
+    height: 55vh;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5%;
+  }
 }
 </style>
