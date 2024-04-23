@@ -1,6 +1,6 @@
 # InteractiveLighting
 
-![Game room](../documentation/Images/gameroom.png)
+![Game room](./documentation/Images/gamelightingroom.jpg)
 
 ## Table of Contents
 
@@ -82,7 +82,7 @@ Here, you can choose from all the effects available in WLED. You can use the sea
 
 This page is intended for informational purposes only, you cannot control the LEDs from here. It provides detailed information about the project, including its goals, features, and technical specifications. If you're looking to control the lighting system, refer to the dedicated control page where you can customize LED effects and effects.
 
-![About page](../InteractiveLighting/documentation/Images/aboutpage.png)
+![About page](./documentation/Images/aboutpage.png)
 
 ### Ambient Sound Integration
 
