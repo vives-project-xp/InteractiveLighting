@@ -4,10 +4,6 @@
 
 ## Table of Contents
 
-## Table of Contents
-
-## Table of Contents
-
 - [Introduction](#introduction)
 - [Project Goals](#project-goals)
 - [Features](#features)
