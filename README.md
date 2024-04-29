@@ -16,7 +16,7 @@
           - [Effect page](#effect-page)
           - [About page](#about-page)
      - [Ambient Sound Integration](#ambient-sound-integration)
-- [Installation and Setup](#installation-and-setup)
+- [Installation and Setup](documentation/installationHardware.md)
 - [End conclusion](#end-conclusion)
 - [Members](#members)
 
@@ -89,10 +89,6 @@ When you are playing a game, the sound and the music is something that you alway
 We were looking for a sound integration using WLED, and we quickly arrived at [LedFx](https://github.com/LedFx/LedFx). LedFx takes audio input and processes the data into real-time light to LEDs.
 
 #### Using Guide
-
-## Installation and Setup
-
-## End conclusion
 
 ## Members
 

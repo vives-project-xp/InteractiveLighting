@@ -1,6 +1,6 @@
 # InteractiveLighting
 
-# Content
+
 
 
 ## Software we used
