@@ -4,6 +4,7 @@ require('dotenv').config();
 const mqtt = require("mqtt");
 const url = "mqtt://broker.devbit.be:1883";
 const options = {
+  
   connectTimeout: 4000,
   username: process.env.MQTT_USERNAME, 
   password: process.env.MQTT_PASSWORD

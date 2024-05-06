@@ -24,7 +24,7 @@ const options = {
 };
 // Middleware setup
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "http://localhost:5173",
   optionsSuccessStatus: 200
 }));
 app.use(express.json()); // Parse JSON bodies
