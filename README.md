@@ -1,73 +1,106 @@
 # InteractiveLighting
-![Alt text](/Yarno/Images/games-room-illuminated-with-leds-generative-ai_545448-18370.avif) 
-# Content #
 
-* Introduction
-* What's our goal?
-* How does it work?
-* Features
-* Expandability
-* Requirements
-     - Software
-     - Hardware
-* Changes during the project
-* Difficulties during project
-* End conclusion
-* Members
+![Game room](./documentation/Images/gamelightingroom.jpg)
 
-## Introduction ##
+## Table of Contents
 
-Welcome to the Interactive Lighting project overview! Our team was tasked with creating an immersive lighting system for a gaming room, offering users various interaction options that dynamically alter the lighting patterns based on in-game actions and ambient sound.
+## Table of Contents
 
-## What's our goal? ##
+## Table of Contents
 
-We were given the task to make lighting for a gaming room that users can interact with in different ways. This will affect the coloring and patern of the lighting.
+- [Introduction](#introduction)
+- [Project Goals](#project-goals)
+- [Features](#features)
+- [Technical overview](#technical-overview)
+     - [Software](#software)
+     - [Hardware](#hardware)
+- [User Interface](#user-interface)
+     - [Webpage](#webpage)
+          - [Home page](#home-page)
+          - [Effect page](#effect-page)
+          - [About page](#about-page)
+     - [Ambient Sound Integration](#ambient-sound-integration)
+- [Installation and Setup](#installation-and-setup)
+- [End conclusion](#end-conclusion)
+- [Members](#members)
 
-## How does it work? ##
+## Introduction
 
-We use multiple led strips that are connected to the gaming setup and these will project different lighting paterns depending on what sound is made in the game you're playing. 
+The Interactive Lighting Project is designed to create an immersive lighting system for the gaming room, offering users interactive options that dynamically change lighting effects based on ambient sound or controlled by the user. The lighting setup can be mounted on a Velcro panel, allowing it to be positioned anywhere near a power outlet. This README offers a comprehensive overview of the project's goals, technical specifications, and an installation guide.
 
-## Features ##
-* Real-time Responsiveness: The lighting system reacts instantly to in-game events and ambient sound, providing a seamless and immersive experience.
+## Project Goals
 
-## Expandability ##
+The primary goal of this project is to create a customizable and expandable lighting system for gaming rooms. The system should enhance gaming experiences by responding to in-game sound in real-time. Users can interact with the lighting in various ways, adjusting color and patterns to suit their preferences.
 
-This project has been designed with expandability in mind, so that future enhancements and additions can be made without significant rework. Some examples are:
+## Features
 
-* 
+- User-Controlled Lighting: The lighting system allows users to interact with the system via a webpage, offering flexibility in customization.
+- Customizable Settings: Users can adjust lighting colors, brightness, and patterns to create their desired atmosphere.
 
+## Technical overview
 
+### Software
 
-## Software we used ##
+- WLED: A versatile software library for controlling LED strips, offering various effects and customization options.
+- Fusion 360: Used for designing and prototyping the physical components of the lighting system.
+- Visual Studio Code: Used for writing the code for our online interface.
+- LedFx: LedFx is a network based LED effect engine designed to deliver advanced real-time audio effects to a wide variety of devices.
 
-* Arduino: For programming the microcontroller and controlling the LED strips.
-* WLED: A versatile software library for controlling LED strips, offering various effects and customization options.
-* Fusion 360: Used for designing and prototyping the physical components of the lighting system.
+### Hardware
 
-## Hardware we used ##
+- ESP32: A powerful microcontroller providing ample processing power and connectivity options.
+- 24V Power Supply: To provide the necessary power for the LED strips and other components.
+- DC/DC Converter: Ensures efficient power conversion and regulation.
+- WS2812 LED Strips: Addressable LED strips capable of displaying a wide range of colors and patterns.
+- Ceiling Mounting Hardware: Initially considered for mounting the LED strips, later replaced with a panel with velcro for easier installation and flexibility.
+- JST Connectors: Used for connecting and disconnecting components easily.
+- Velcro: This serves as a versatile mounting solution for attaching the LED strips to a panel or surface. It offers flexibility and adjustability in the placement of the lighting components.
 
-* ESP32: A powerful microcontroller providing ample processing power and connectivity options.
-* 24V Power Supply: To provide the necessary power for the LED strips and other components.
-* DC/DC Converter: Ensures efficient power conversion and regulation.
-* WS2812 LED Strips: Addressable LED strips capable of displaying a wide range of colors and patterns.
-* Ceiling Mounting Hardware: Initially considered for mounting the LED strips, later replaced with a panel with velcro for easier installation and flexibility.
-* JST Connectors: Used for connecting and disconnecting components easily.
-* Velcro: This serves as a versatile mounting solution for attaching the LED strips to a panel or surface. It offers flexibility and adjustability in the placement of the lighting components.
+## User Interface
 
-## Changes during the project ##
+Because we use the velcro panel and work with linking cables, we are able to make a shape for the leds and change it later on. The user can interact with the leds on our webpage. They can change colors, settings and effects.
 
-Originally, we planned to mount the LED strips on the ceiling however this was later changed and we decided to go with sticking the leds to a panel with velcro.
+### Webpage
 
-## Difficulties during the project ##
+We've put together a website that lets you take full control of your lights. There are different sections for controlling your LED settings like the color, brightness and to turn them on/off (Home page), or choose a cool effect (Effects page), and even learning a bit about what inspired us to create this (About page).
 
+#### Home page
 
+On this page you can control the general led settings. The solid color, the brightness and a button to turn them on or off. There is also a random effect button.
+There is a left side and a right side. On the left side there is a big colorpicker to choose your own color. Next to the colorpicker there are 4 button for pure blue, red, green or white color.
+On the right side, there is a button to turn the lights on or off. Below you can choose the brightness and a random effect.
 
-## End conclusion ##
+![Home page](./documentation/Images/homepage.png)
 
+#### Effect page
 
+Here, you can choose from all the effects available in WLED. You can use the search bar to find a specific effect, or you can browse through the entire list to select one. Allowing you to create a unique atmosphere for the gaming room.
 
-## Member ##
-* Ibe Packo
-* Lennart Fonteyne 
-* Yarno Otte
-* Joren Vandewalle
+![Effect page](./documentation/Images/effectpage.png)
+
+#### About page
+
+This page is intended for informational purposes only, you cannot control the LEDs from here. It provides detailed information about the project, including its goals, features, and technical specifications. If you're looking to control the lighting system, refer to the dedicated control page where you can customize LED effects and effects.
+
+![About page](./documentation/Images/aboutpage.png)
+
+### Ambient Sound Integration
+
+When you are playing a game, the sound and the music is something that you always need. You need to hear shots, monsters, footsteps and manny more things. Thats why we choose to add an sound integration.
+
+#### LedFx
+
+We were looking for a sound integration using WLED, and we quickly arrived at [LedFx](https://github.com/LedFx/LedFx). LedFx takes audio input and processes the data into real-time light to LEDs.
+
+#### Using Guide
+
+## Installation and Setup
+
+## End conclusion
+
+## Members
+
+- Ibe Packo
+- Lennart Fonteyne
+- Yarno Otte
+- Joren Vandewalle
