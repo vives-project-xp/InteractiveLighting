@@ -52,7 +52,6 @@
 
       <section id="features">
         <h2>Features</h2>
-
         Real-time Responsiveness: The lighting system reacts instantly to
         in-game events and ambient sound, providing a seamless and immersive
         experience.
@@ -67,7 +66,6 @@
         </p>
       </section>
       <br />
-
       <section id="software">
         <h2>Software We Used</h2>
         <div>

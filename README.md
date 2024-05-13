@@ -15,8 +15,8 @@
           - [Home Page](#home-page)
           - [Effect Page](#effect-page)
           - [About Page](#about-page)
-     - [Reactive Sound Integration](#reactive-sound-integration)
-- [Installation and Setup](documentation/installationHardware.md)
+          - [Reactive Sound Integration](#reactive-sound-integration)
+- [Installation and Setup](#installation-and-setup)
 - [End Conclusion](#end-conclusion)
 - [Members](#members)
 
@@ -32,12 +32,9 @@ The primary objective of this project is to develop a customizable and expandabl
 
 - User-Controlled Lighting: The lighting system enables users to interact with it via a webpage, offering flexibility in customization.
 - Customizable Settings: Users can adjust lighting colors, brightness, and patterns to create their desired gaming atmosphere.
-<<<<<<< HEAD
 - Reactive Audio support: With the installation of a seperate program one can even use their computers audiostream to control the leds.
-For more info look [here](documentation/AudioReactivity.md) 
-=======
-- Reactive sound interegation: We use LedFx to get an reactive sound interegation, this is accessible via voicemeeter.
->>>>>>> 1b7c3e195f579ff74483eb18861417fd81041538
+For more info look [here](documentation/AudioReactivity.md)
+- Effortless adjustment: Because the LED strips are stuck to the panel with velcro, you can easily adjust the position of every individual LED strip segment. This makes sure that the user can place them where he/she sees fit.
 
 ## Technical Overview
 
@@ -49,10 +46,7 @@ For more info look [here](documentation/AudioReactivity.md)
 - **Visual Studio Code:** Utilized for writing the code for the online interface.
 - **LedFx:** A network-based LED effect engine designed to deliver advanced real-time audio effects to various devices.
 - **Voicemeeter:** Voicemeeter is a software tool that acts like a mixer for audio. It includes a virtual audio device which can be used to mix and control various audio sources coming from or going to different devices or software applications.
-
-### Software installation
-
-To find an indept instruction of how to install the software look [here](/documentation/installationSoftware.md)
+- **Docker:** Employed for containerization, Docker streamlines deployment and ensures consistent performance across various environments, enhancing the scalability and reliability of the lighting system.
 
 ### Hardware
 
@@ -63,10 +57,6 @@ To find an indept instruction of how to install the software look [here](/docume
 - **Ceiling Mounting Hardware:** Initially considered for mounting the LED strips but replaced with a Velcro panel for easier installation and flexibility.
 - **JST Connectors:** Facilitate easy connection and disconnection of components.
 - **Velcro:** Offers a versatile mounting solution for attaching the LED strips to a panel or surface, enabling flexible placement.
-
-### Hardware installation
-
-To find an indept instruction of how to install the hardware look [here](/documentation/installationHardware.md)
 
 ## User Interface
 
@@ -108,11 +98,16 @@ Voicemeeter is a software tool that acts like a mixer for audio. It includes a v
 
 ### Customizable Setup
 
-The system is placed on an velcro board. Because of this we can customize the setup of the led strips and change how it looks.
-We used Autodesk Fusion make it 3d printed corners to get a more aesthetic look.
+The system is placed on an velcro board. To connect the leds we have JST connectors. Because of this we can customize the setup of the led strips and change how it looks.
+We used Autodesk Fusion to make 3d printed corners to get a more aesthetic look.
+
+## Installation and Setup
+
+First complete the [hardware](/documentation/installationHardware.md) installation guide and then complete the [software](/documentation/installationSoftware.md) guide.
 
 ## Usage Guide
 
+For the usage guide it is best to first read and complete the [Installation and Setup](#installation-and-setup) guide
 The website offers easy-to-use controls. The LED strips can be easily rearranged thanks to Velcro and JST connectors, allowing for various setup options.
 
 ## End Conclusion
