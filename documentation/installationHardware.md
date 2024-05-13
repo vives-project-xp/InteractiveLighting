@@ -6,6 +6,11 @@
 
  Connect the correct cables to your power supply and ESP-32. The red cable should go to the positive side and white to ground. Connect the green cable to your datapin on your ESP-32, in our case GPIO 7 and the other white cable to the ground on your ESP-32. There should be a provided JST-Connector that should give you the green and other white cable.
 
+<<<<<<< HEAD
+ Power your ESP-32 with a micro-usb cable or a 5V power supply. You can optionally put it in a breadboad and connect the cables that way.
+
+ ## Level Shifter
+=======
 ## ESP-32
 
  Power your ESP-32 with a micro-usb cable or a 5V power supply. You can optionally put it in a breadboad and connect the cables that way.
@@ -17,7 +22,11 @@
 ### Schematic
 
 ![Levelshifter](Levelshifter.pdf)
+<<<<<<< HEAD
 
 ## Software Installation
 
 After comleting this you can go to the [Software](/documentation/installationSoftware.md) guide.
+=======
+>>>>>>> ba7cb42ccc10c91dc4c3785278539113eeee43e9
+>>>>>>> 10792df9de25e005b05c4add650d21f3dead8eb0
