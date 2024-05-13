@@ -15,15 +15,14 @@
           - [Home Page](#home-page)
           - [Effect Page](#effect-page)
           - [About Page](#about-page)
-     - [Ambient Sound Integration](#ambient-sound-integration)
+     - [Reactive Sound Integration](#reactive-sound-integration)
 - [Installation and Setup](documentation/installationHardware.md)
-- [Summary] (#Summary)
 - [End Conclusion](#end-conclusion)
 - [Members](#members)
 
 ## Introduction
 
-The Interactive Lighting Project aims to create an immersive lighting system for gaming rooms, offering users interactive options that dynamically change lighting effects based on ambient sound or user control. The lighting setup, which can be mounted on a Velcro panel, provides versatility in placement near a power outlet. This README provides an extensive overview of the project's objectives, technical details, and an installation guide.
+The Interactive Lighting Project aims to create an immersive lighting system for gaming rooms, offering users interactive options that dynamically change lighting effects based on reactive sound or user control. The lighting setup, which can be mounted on a Velcro panel, provides versatility in placement near a power outlet. This README provides an extensive overview of the project's objectives, technical details, and an installation guide.
 
 ## Project Goals
 
@@ -33,6 +32,7 @@ The primary objective of this project is to develop a customizable and expandabl
 
 - User-Controlled Lighting: The lighting system enables users to interact with it via a webpage, offering flexibility in customization.
 - Customizable Settings: Users can adjust lighting colors, brightness, and patterns to create their desired gaming atmosphere.
+- Reactive sound interegation: We use LedFx to get an reactive sound interegation, this is accessible via voicemeeter.
 
 ## Technical Overview
 
@@ -42,6 +42,7 @@ The primary objective of this project is to develop a customizable and expandabl
 - **Fusion 360:** Used for designing and prototyping the physical components of the lighting system.
 - **Visual Studio Code:** Utilized for writing the code for the online interface.
 - **LedFx:** A network-based LED effect engine designed to deliver advanced real-time audio effects to various devices.
+- **Voicemeeter:** Voicemeeter is a software tool that acts like a mixer for audio. It includes a virtual audio device which can be used to mix and control various audio sources coming from or going to different devices or software applications.
 
 ### Hardware
 
@@ -55,7 +56,7 @@ The primary objective of this project is to develop a customizable and expandabl
 
 ## User Interface
 
-The user interacts with the LEDs through a webpage. They can control colors, settings, and effects.
+The user interacts with the LEDs through a webpage. They can control colors, settings, and effects. We provided a feature so that the user can choose for an reactive sound interegation.
 
 ### Webpage
 
@@ -79,21 +80,28 @@ This page provides detailed information about the project's goals, features, and
 
 ![About page](./documentation/Images/aboutpage.png)
 
-### Ambient Sound Integration
+### Reactive Sound Integration
 
-To enhance the gaming experience, sound integration has been implemented.
+To enhance the gaming experience, sound integration has been implemented. For this we use LedFx and voicemeeter to send it true.
 
 #### LedFx
 
 LedFx was chosen for sound integration as it takes audio input and converts it into real-time light effects for LEDs.
 
-#### Usage Guide
+#### Voicemeeter
 
-The webpage provides simple and user-friendly control. The LED strips' rearrangeability, facilitated by Velcro and JST connectors, allows for multiple configurations.
+Voicemeeter is a software tool that acts like a mixer for audio. It includes a virtual audio device which can be used to mix and control various audio sources coming from or going to different devices or software applications. We use it to send the sound from the application true mqtt.
 
-## Summary
+### Customizable Setup
 
+The system is placed on an velcro board. Because of this we can customize the setup of the led strips and change how it looks.
+We used Autodesk Fusion make it 3d printed corners to get a more aesthetic look.
 
+## Usage Guide
+
+The website offers easy-to-use controls. The LED strips can be easily rearranged thanks to Velcro and JST connectors, allowing for various setup options.
+
+## End Conclusion
 
 ## Members
 
