@@ -34,6 +34,7 @@ The primary objective of this project is to develop a customizable and expandabl
 - Customizable Settings: Users can adjust lighting colors, brightness, and patterns to create their desired gaming atmosphere.
 - Reactive Audio support: With the installation of a seperate program one can even use their computers audiostream to control the leds.
 For more info look [here](documentation/AudioReactivity.md)
+- Effortless adjustment: Because the LED strips are stuck to the panel with velcro, you can easily adjust the position of every individual LED strip segment. This makes sure that the user can place them where he/she sees fit.
 
 ## Technical Overview
 
@@ -45,6 +46,7 @@ For more info look [here](documentation/AudioReactivity.md)
 - **Visual Studio Code:** Utilized for writing the code for the online interface.
 - **LedFx:** A network-based LED effect engine designed to deliver advanced real-time audio effects to various devices.
 - **Voicemeeter:** Voicemeeter is a software tool that acts like a mixer for audio. It includes a virtual audio device which can be used to mix and control various audio sources coming from or going to different devices or software applications.
+- **Docker:** Employed for containerization, Docker streamlines deployment and ensures consistent performance across various environments, enhancing the scalability and reliability of the lighting system.
 
 ### Hardware
 
@@ -55,6 +57,14 @@ For more info look [here](documentation/AudioReactivity.md)
 - **Ceiling Mounting Hardware:** Initially considered for mounting the LED strips but replaced with a Velcro panel for easier installation and flexibility.
 - **JST Connectors:** Facilitate easy connection and disconnection of components.
 - **Velcro:** Offers a versatile mounting solution for attaching the LED strips to a panel or surface, enabling flexible placement.
+
+## Level Shifter Documentation ##
+
+![Level Shifter Documentation](documentation/Images/Levelshifter.png)
+
+## Electrical Scheme ##
+
+![Electrical scheme](<documentation/Images/Elektrisch schema.png>)
 
 ## User Interface
 
