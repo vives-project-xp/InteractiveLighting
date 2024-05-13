@@ -17,7 +17,6 @@
           - [About Page](#about-page)
      - [Ambient Sound Integration](#ambient-sound-integration)
 - [Installation and Setup](documentation/installationHardware.md)
-- [Summary] (#Summary)
 - [End Conclusion](#end-conclusion)
 - [Members](#members)
 
@@ -33,25 +32,36 @@ The primary objective of this project is to develop a customizable and expandabl
 
 - User-Controlled Lighting: The lighting system enables users to interact with it via a webpage, offering flexibility in customization.
 - Customizable Settings: Users can adjust lighting colors, brightness, and patterns to create their desired gaming atmosphere.
+- Reactive Audio support: With the installation of a seperate program one can even use their computers audiostream to control the leds.
+For more info look [here](documentation/AudioReactivity.md) 
 
 ## Technical Overview
 
 ### Software
 
 - **WLED:** This versatile software library controls LED strips, providing a range of effects and customization options.
+- **VoiceMeeter** This program is used to reroute the audio output of your device to a virtual input so it can be used to control the leds
 - **Fusion 360:** Used for designing and prototyping the physical components of the lighting system.
 - **Visual Studio Code:** Utilized for writing the code for the online interface.
 - **LedFx:** A network-based LED effect engine designed to deliver advanced real-time audio effects to various devices.
 
+### Software installation
+
+To find an indept instruction of how to install the software look [here](/documentation/installationSoftware.md)
+
 ### Hardware
 
-- **ESP32:** A powerful microcontroller providing ample processing power and connectivity options.
+- **ESP Decice** A powerful microcontroller providing ample processing power and connectivity options. For more information of which ones can be used please look in the installation readme
 - **24V Power Supply:** Supplies power to the LED strips and other components.
 - **DC/DC Converter:** Ensures efficient power conversion and regulation.
 - **WS2812 LED Strips:** Addressable LED strips capable of displaying a wide range of colors and patterns.
 - **Ceiling Mounting Hardware:** Initially considered for mounting the LED strips but replaced with a Velcro panel for easier installation and flexibility.
 - **JST Connectors:** Facilitate easy connection and disconnection of components.
 - **Velcro:** Offers a versatile mounting solution for attaching the LED strips to a panel or surface, enabling flexible placement.
+
+### Hardware installation
+
+To find an indept instruction of how to install the hardware look [here](/documentation/installationHardware.md)
 
 ## User Interface
 

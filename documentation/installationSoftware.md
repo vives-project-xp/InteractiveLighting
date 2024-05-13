@@ -16,3 +16,5 @@
 ## LedFX
 
 LedFX is used for the audio oriented effects. Installation is fairly straight forward. Surf to [LedFX](https://www.ledfx.app/download-ledfx/) and download the latest version. Unzip the file and run LedFX.exe. It should give you a warning but it's perfectly safe. When it opens, it will hide itself. Click on the hidden icons button on your task bar to open it. Right click LedFX and select open. It should open a website in your browser. Follow the introduction steps and you should be good to go.
+
+However if for some reason LEDfx can not be used we will need to make use of MQTT to send our data. For this we use a self made program which you can find [here](AudioReactivity.md)
