@@ -34,10 +34,7 @@ The primary objective of this project is to develop a customizable and expandabl
 - Customizable Settings: Users can adjust lighting colors, brightness, and patterns to create their desired gaming atmosphere.
 <<<<<<< HEAD
 - Reactive Audio support: With the installation of a seperate program one can even use their computers audiostream to control the leds.
-For more info look [here](documentation/AudioReactivity.md) 
-=======
-- Reactive sound interegation: We use LedFx to get an reactive sound interegation, this is accessible via voicemeeter.
->>>>>>> 1b7c3e195f579ff74483eb18861417fd81041538
+For more info look [here](documentation/AudioReactivity.md)
 
 ## Technical Overview
 
