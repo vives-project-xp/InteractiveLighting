@@ -20,7 +20,11 @@ Because the WS2814 expects its data to be at 5V and the ESP sends its data at 3V
 
 ### Schematic
 
-![Levelshifter](Levelshifter.pdf)
+- Levelshifter
+![Level Shifter Documentation](/documentation/Images/Levelshifter.png)
+
+- Electrical scheme
+![Electrical scheme](/documentation/Images/Elektrisch%20schema.png)
 
 ## Software Installation
 

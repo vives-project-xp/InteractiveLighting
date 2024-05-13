@@ -58,14 +58,6 @@ For more info look [here](documentation/AudioReactivity.md)
 - **JST Connectors:** Facilitate easy connection and disconnection of components.
 - **Velcro:** Offers a versatile mounting solution for attaching the LED strips to a panel or surface, enabling flexible placement.
 
-## Level Shifter Documentation ##
-
-![Level Shifter Documentation](documentation/Images/Levelshifter.png)
-
-## Electrical Scheme ##
-
-![Electrical scheme](<documentation/Images/Elektrisch schema.png>)
-
 ## User Interface
 
 The user interacts with the LEDs through a webpage. They can control colors, settings, and effects. We provided a feature so that the user can choose for an reactive sound interegation.
