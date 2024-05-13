@@ -46,10 +46,6 @@ For more info look [here](documentation/AudioReactivity.md)
 - **LedFx:** A network-based LED effect engine designed to deliver advanced real-time audio effects to various devices.
 - **Voicemeeter:** Voicemeeter is a software tool that acts like a mixer for audio. It includes a virtual audio device which can be used to mix and control various audio sources coming from or going to different devices or software applications.
 
-### Software installation
-
-To find an indept instruction of how to install the software look [here](/documentation/installationSoftware.md)
-
 ### Hardware
 
 - **ESP Decice** A powerful microcontroller providing ample processing power and connectivity options. For more information of which ones can be used please look in the installation readme
@@ -59,10 +55,6 @@ To find an indept instruction of how to install the software look [here](/docume
 - **Ceiling Mounting Hardware:** Initially considered for mounting the LED strips but replaced with a Velcro panel for easier installation and flexibility.
 - **JST Connectors:** Facilitate easy connection and disconnection of components.
 - **Velcro:** Offers a versatile mounting solution for attaching the LED strips to a panel or surface, enabling flexible placement.
-
-### Hardware installation
-
-To find an indept instruction of how to install the hardware look [here](/documentation/installationHardware.md)
 
 ## User Interface
 

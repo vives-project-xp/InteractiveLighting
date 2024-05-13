@@ -1,9 +1,5 @@
 # Interactive Lighting
 
-## Software
-
-- [Software](/documentation/installationSoftware.md)
-
 # Hardware Installation
 
 ## LED Strip 2814
@@ -21,3 +17,7 @@
 ### Schematic
 
 ![Levelshifter](Levelshifter.pdf)
+
+## Software Installation
+
+After comleting this you can go to the [Software](/documentation/installationSoftware.md) guide.
