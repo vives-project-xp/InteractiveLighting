@@ -67,7 +67,6 @@
         </p>
       </section>
       <br />
-
       <section id="software">
         <h2>Software We Used</h2>
         <div>

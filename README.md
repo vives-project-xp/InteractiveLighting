@@ -15,8 +15,8 @@
           - [Home Page](#home-page)
           - [Effect Page](#effect-page)
           - [About Page](#about-page)
-     - [Reactive Sound Integration](#reactive-sound-integration)
-- [Installation and Setup](documentation/installationHardware.md)
+          - [Reactive Sound Integration](#reactive-sound-integration)
+- [Installation and Setup](#installation-and-setup)
 - [End Conclusion](#end-conclusion)
 - [Members](#members)
 
@@ -94,11 +94,16 @@ Voicemeeter is a software tool that acts like a mixer for audio. It includes a v
 
 ### Customizable Setup
 
-The system is placed on an velcro board. Because of this we can customize the setup of the led strips and change how it looks.
-We used Autodesk Fusion make it 3d printed corners to get a more aesthetic look.
+The system is placed on an velcro board. To connect the leds we have JST connectors. Because of this we can customize the setup of the led strips and change how it looks.
+We used Autodesk Fusion to make 3d printed corners to get a more aesthetic look.
+
+## Installation and Setup
+
+For the installation and the setup whe have made another readme. [Here](documentation/installationHardware.md) you have the correct installation guide.
 
 ## Usage Guide
 
+For the usage guide it is best to first read and complete the [Installation and Setup](#installation-and-setup) guide
 The website offers easy-to-use controls. The LED strips can be easily rearranged thanks to Velcro and JST connectors, allowing for various setup options.
 
 ## End Conclusion
