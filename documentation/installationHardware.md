@@ -8,8 +8,6 @@ Connect the correct cables to your power supply and ESP-32. The red cable should
 
 Power your ESP-32 with a micro-usb cable or a 5V power supply. You can optionally put it in a breadboad and connect the cables that way.
 
-## Level Shifter
-
 ## ESP-32
 
 Power your ESP-32 with a micro-usb cable or a 5V power supply. You can optionally put it in a breadboad and connect the cables that way.
