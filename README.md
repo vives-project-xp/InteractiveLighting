@@ -101,7 +101,7 @@ We used Autodesk Fusion to make 3d printed corners to get a more aesthetic look.
 
 ## Installation and Setup
 
-There is an [software](/documentation/installationSoftware.md) and a [hardware](/documentation/installationHardware.md) installation guide.
+First complete the [hardware](/documentation/installationHardware.md) installation guide and then complete the [software](/documentation/installationSoftware.md) guide.
 
 ## Usage Guide
 
