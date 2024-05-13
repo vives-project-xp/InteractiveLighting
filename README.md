@@ -32,7 +32,6 @@ The primary objective of this project is to develop a customizable and expandabl
 
 - User-Controlled Lighting: The lighting system enables users to interact with it via a webpage, offering flexibility in customization.
 - Customizable Settings: Users can adjust lighting colors, brightness, and patterns to create their desired gaming atmosphere.
-<<<<<<< HEAD
 - Reactive Audio support: With the installation of a seperate program one can even use their computers audiostream to control the leds.
 For more info look [here](documentation/AudioReactivity.md)
 
@@ -110,7 +109,7 @@ We used Autodesk Fusion to make 3d printed corners to get a more aesthetic look.
 
 ## Installation and Setup
 
-For the installation and the setup whe have made another readme. [Here](documentation/installationHardware.md) you have the correct installation guide.
+There is an [software](/documentation/installationSoftware.md) and a [hardware](/documentation/installationHardware.md) installation guide.
 
 ## Usage Guide
 
