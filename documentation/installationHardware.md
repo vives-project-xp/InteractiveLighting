@@ -1,5 +1,8 @@
 # Interactive Lighting
 
+## Software
+- [Software](documentation/installationSoftware.md)
+
 # Installation
 
 ## LED Strip
