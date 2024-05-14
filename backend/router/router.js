@@ -3,7 +3,7 @@ const effects = require('./effects.js');
 const mqtt = require('./mqtt.js');
 
 const router = express.Router();
-const baseTopic = 'PM/int-lightning/api';
+const baseTopic = process.env.MQTT_BASE_TOPIC + '/api';
 
 router.get('/', (req, res) => {
   res.send('Hello World!');
