@@ -199,7 +199,7 @@ export default {
         brightness: parseInt(brightness),
       };
       axios
-        .post(`http://${this.backendUrl}/brightness`, payload)
+        .post(`${this.backendUrl}/brightness`, payload)
         .then((response) => {
           console.log(response);
         })
