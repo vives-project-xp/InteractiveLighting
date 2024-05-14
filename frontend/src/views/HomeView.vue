@@ -92,6 +92,17 @@ import dotenv from "dotenv";
             @input="getBrightnessValue()"
           />
         </div>
+        <div class="grid-item-ledControls" id="speedDiv">
+          <h2>Speed</h2>
+          <input
+            type="range"
+            id="speed"
+            min="0"
+            max="255"
+            value="50"
+            @input="getSpeedValue()"
+          />
+        </div>
         <div class="grid-item-ledControls" id="randomEffectDiv">
           <h2>Random Effect</h2>
           <br />
@@ -170,6 +181,20 @@ export default {
     },
     getBrightnessValue() {
       const brightness = document.getElementById("brightness").value;
+      const payload = {
+        brightness: parseInt(brightness),
+      };
+      axios
+        .post(`http://${this.backendUrl}/brightness`, payload)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    getSpeedValue() {
+      const brightness = document.getElementById("speed").value;
       const payload = {
         brightness: parseInt(brightness),
       };
@@ -440,6 +465,45 @@ footer {
 }
 
 #brightnessslider::-moz-range-thumb {
+  width: 1vw;
+  height: 1vh;
+  border-radius: 50%;
+  background: rgb(155, 208, 183);
+}
+
+#speedDiv{
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#speedslider {
+  width: 100%;
+  height: 1.5vh;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+#speedslider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 3.5vh;
+  height: 3.5vh;
+  border-radius: 50%;
+  background: rgb(155, 208, 183);
+  cursor: pointer;
+}
+
+#speedslider::-webkit-slider-thumb:hover {
+  background-color: rgb(217, 151, 116);
+  transition: 1000ms;
+}
+
+#speedslider::-moz-range-thumb {
   width: 1vw;
   height: 1vh;
   border-radius: 50%;
