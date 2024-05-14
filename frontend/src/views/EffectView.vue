@@ -48,7 +48,7 @@ export default {
     getEffectList() {
       // Fetch effects list from the provided URL
       axios
-        .get(`http://${this.backendUrl}/effect`)
+        .get(`${this.backendUrl}/effect`)
         .then((response) => {
           console.log(response.data);
           this.effects = response.data;
@@ -64,7 +64,7 @@ export default {
         const request = {
           fx: selectedEffect.index
         };
-        axios.post(`http://${this.backendUrl}/effect`, request)
+        axios.post(`${this.backendUrl}/effect`, request)
           .then((response) => {
             console.log(response);
           })

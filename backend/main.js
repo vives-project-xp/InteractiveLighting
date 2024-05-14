@@ -1,6 +1,7 @@
 const express = require('express'), bodyParser = require("body-parser"),
 swaggerJsdoc = require("swagger-jsdoc"),
 swaggerUi = require("swagger-ui-express");;
+//const swaggerDocument = require('./router/swagger.yaml');
 const router = require('./router/router.js');
 const app = express();
 const port = 3000;
@@ -16,7 +17,7 @@ const options = {
       },
       servers: [
           {
-              url: "http://localhost:3000"
+              url: process.env.VITE_BACKEND_URL,
           },
       ],
   },

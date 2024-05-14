@@ -160,7 +160,7 @@ export default {
       };
       console.log(payload);
       axios
-        .post(`http://${this.backendUrl}/color`, payload)
+        .post(`${this.backendUrl}/color`, payload)
         .then((response) => {
           console.log(response);
         })
@@ -170,7 +170,7 @@ export default {
     },
     setRandomEffect() {
       axios
-        .post(`http://${this.backendUrl}/random`
+        .post(`${this.backendUrl}/random`
         )
         .then((response) => {
           console.log(response);
@@ -185,7 +185,7 @@ export default {
         brightness: parseInt(brightness),
       };
       axios
-        .post(`http://${this.backendUrl}/brightness`, payload)
+        .post(`${this.backendUrl}/brightness`, payload)
         .then((response) => {
           console.log(response);
         })
@@ -213,7 +213,7 @@ export default {
         on: this.state,
       };
       axios
-        .post(`http://${this.backendUrl}/onof`, payload)
+        .post(`${this.backendUrl}/onof`, payload)
         .then((response) => {
           console.log(response);
         })
@@ -227,7 +227,7 @@ export default {
         color: color,
       };
       axios
-        .post(`http://${this.backendUrl}/color`, payload)
+        .post(`${this.backendUrl}/color`, payload)
         .then((response) => {
           console.log(response);
         })
