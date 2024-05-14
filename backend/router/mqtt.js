@@ -2,7 +2,7 @@ require('dotenv').config();
 
 
 const mqtt = require("mqtt");
-const url = process.env.MQTT_URL;
+const url = process.env.MQTT_BROKER + "/api";
 const options = {
   
   connectTimeout: 4000,
