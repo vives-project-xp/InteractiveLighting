@@ -62,6 +62,10 @@ import dotenv from "dotenv";
           <h2>Speed</h2>
           <input type="range" id="speed" min="0" max="255" value="50" @input="getSpeedValue()" />
         </div>
+        <div class="grid-item-ledControls" id="ledSpiecesDiv">
+          <h2>Led Strip Pieces</h2>
+          <input type="range" id="ledSpieces" min="0" max="20" value="1" @input="getledSpiecesValue()" />
+        </div>
         <div class="grid-item-ledControls" id="randomEffectDiv">
           <h2>Random Effect</h2>
           <br />
@@ -151,6 +155,20 @@ export default {
       };
       axios
         .post(`${this.backendUrl}/speed`, payload)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    getledSpiecesValue() {
+      const ledSpieces = document.getElementById("ledSpieces").value;
+      const payload = {
+        ledSpieces: parseInt(ledSpieces),
+      };
+      axios
+        .post(`${this.backendUrl}/ledSpieces`, payload)
         .then((response) => {
           console.log(response);
         })
@@ -279,7 +297,6 @@ footer {
   background-color: transparent;
   justify-content: center;
   align-items: center;
-  margin: 2.5vh;
 }
 
 #colorpicker {
@@ -477,6 +494,47 @@ footer {
   background: rgb(155, 208, 183);
 }
 
+#ledSpiecesDiv {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#ledSpieces {
+  appearance: none;
+  width: 100%;
+  height: 1.5vh;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+#ledSpieces::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 3.5vh;
+  height: 3.5vh;
+  border-radius: 50%;
+  background: rgb(155, 208, 183);
+  cursor: pointer;
+}
+
+#ledSpieces::-webkit-slider-thumb:hover {
+  -webkit-appearance: none;
+  background-color: rgb(217, 151, 116);
+  transition: 1000ms;
+}
+
+#ledSpieces::-moz-range-thumb {
+  width: 1vw;
+  height: 1vh;
+  border-radius: 50%;
+  background: rgb(155, 208, 183);
+}
+
 #randomEffectDiv {
   justify-content: center;
   align-items: center;
@@ -539,7 +597,6 @@ footer {
 
   .ledControls {
     width: 100%;
-    height: 55vh;
     justify-content: center;
     align-items: center;
     padding: 0.5%;
