@@ -3,7 +3,7 @@ services:
     
     build: ./Backend/
     ports:
-     - "3000:3000"
+     - "${BACKEND_PORT}:3000"
     environment:
       - PORT=3000
     restart: always
@@ -17,7 +17,7 @@ services:
     depends_on:
       - backend
     ports:
-     - "5173:5173"
+     - "${FRONTEND_PORT}:5173"
     env_file:
       - .env
 

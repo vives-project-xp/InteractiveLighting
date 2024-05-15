@@ -2,7 +2,7 @@ require('dotenv').config();
 
 
 const mqtt = require("mqtt");
-const url = "mqtt://broker.devbit.be:1883";
+const url = process.env.MQTT_BROKER;
 const options = {
   
   connectTimeout: 4000,
@@ -11,7 +11,6 @@ const options = {
 };
 const client = mqtt.connect(url, options);
 client.on("connect", function () {
-  console.table(options);
   console.log("Connected to mqtt server!");
 });
 

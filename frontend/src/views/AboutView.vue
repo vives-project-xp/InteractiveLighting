@@ -135,4 +135,30 @@ body {
   text-align: center;
   text-shadow: 5px 5px 20px wheat, -5px -5px 20px wheat; 
 }
+
+
+/* ------ Custom Scrollbar ------ */
+
+/* Define the scrollbar style */
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+}
+
+/* Define the thumb style */
+::-webkit-scrollbar-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: wheat;
+  border-radius: 7px;
+}
+
+/* Define the track style */
+::-webkit-scrollbar-track {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+}
 </style>

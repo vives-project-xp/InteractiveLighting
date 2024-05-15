@@ -4,6 +4,7 @@
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Project Goals](#project-goals)
 - [Features](#features)
@@ -17,6 +18,7 @@
           - [About Page](#about-page)
           - [Reactive Sound Integration](#reactive-sound-integration)
 - [Installation and Setup](#installation-and-setup)
+- [Usage Guide](#usage-guide)
 - [End Conclusion](#end-conclusion)
 - [Members](#members)
 
@@ -34,6 +36,7 @@ The primary objective of this project is to develop a customizable and expandabl
 - Customizable Settings: Users can adjust lighting colors, brightness, and patterns to create their desired gaming atmosphere.
 - Reactive Audio support: With the installation of a seperate program one can even use their computers audiostream to control the leds.
 For more info look [here](documentation/AudioReactivity.md)
+- Effortless adjustment: Because the LED strips are stuck to the panel with velcro, you can easily adjust the position of every individual LED strip segment. This makes sure that the user can place them where he/she sees fit.
 
 ## Technical Overview
 
@@ -45,6 +48,7 @@ For more info look [here](documentation/AudioReactivity.md)
 - **Visual Studio Code:** Utilized for writing the code for the online interface.
 - **LedFx:** A network-based LED effect engine designed to deliver advanced real-time audio effects to various devices.
 - **Voicemeeter:** Voicemeeter is a software tool that acts like a mixer for audio. It includes a virtual audio device which can be used to mix and control various audio sources coming from or going to different devices or software applications.
+- **Docker:** Employed for containerization, Docker streamlines deployment and ensures consistent performance across various environments, enhancing the scalability and reliability of the lighting system.
 
 ### Hardware
 

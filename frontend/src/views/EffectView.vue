@@ -48,7 +48,7 @@ export default {
     getEffectList() {
       // Fetch effects list from the provided URL
       axios
-        .get(`http://${this.backendUrl}/effect`)
+        .get(`${this.backendUrl}/effect`)
         .then((response) => {
           console.log(response.data);
           this.effects = response.data;
@@ -64,7 +64,7 @@ export default {
         const request = {
           fx: selectedEffect.index
         };
-        axios.post(`http://${this.backendUrl}/effect`, request)
+        axios.post(`${this.backendUrl}/effect`, request)
           .then((response) => {
             console.log(response);
           })
@@ -145,5 +145,31 @@ table {
 #buttonEffect {
   background-color: rgb(155, 208, 183);
   color: black;
+}
+
+
+/* ------ Custom Scrollbar ------ */
+
+/* Define the scrollbar style */
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+}
+
+/* Define the thumb style */
+::-webkit-scrollbar-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: wheat;
+  border-radius: 7px;
+}
+
+/* Define the track style */
+::-webkit-scrollbar-track {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
 }
 </style>

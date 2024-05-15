@@ -1,0 +1,155 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: "Interactive lighting API"
+  description: "API for controlling lighting effects and settings"
+basePath: ""
+tags:
+  - name: Lighting
+    description: Operations related to controlling lighting effects
+schemes:
+  - http
+paths:
+  /:
+    get:
+      tags:
+        - Lighting
+      summary: Get status
+      description: Returns 'Hello World!' as a test response
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: string
+    post:
+      tags:
+        - Lighting
+      summary: Update on/off state
+      description: |
+        Publishes the on/off state to the lighting system.
+        Example body: {"on": true}
+      parameters:
+        - in: body
+          name: body
+          description: On/off state
+          required: true
+          schema:
+            type: object
+            properties:
+              on:
+                type: boolean
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: string
+  /color:
+    post:
+      tags:
+        - Lighting
+      summary: Update color
+      description: |
+        Publishes the color to the lighting system.
+        Example body: {"color": "#FFFFFF"}
+      parameters:
+        - in: body
+          name: body
+          description: Color value in hexadecimal format
+          required: true
+          schema:
+            type: object
+            properties:
+              color:
+                type: string
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: string
+  /random:
+    post:
+      tags:
+        - Lighting
+      summary: Activate random effect
+      description: |
+        Activates a random lighting effect.
+        Example body: {}
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: string
+  /brightness:
+    post:
+      tags:
+        - Lighting
+      summary: Update brightness
+      description: |
+        Adjusts the brightness of the lighting system.
+        Example body: {"brightness": 50}
+      parameters:
+        - in: body
+          name: body
+          description: Brightness value (0-100)
+          required: true
+          schema:
+            type: object
+            properties:
+              brightness:
+                type: integer
+                minimum: 0
+                maximum: 100
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: string
+  /effect:
+    get:
+      tags:
+        - Lighting
+      summary: Get available effects
+      description: Returns a list of available effects
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              type: string
+    post:
+      tags:
+        - Lighting
+      summary: Activate effect
+      description: |
+        Activates a specific lighting effect.
+        Example body: {"fx": "rainbow"}
+      parameters:
+        - in: body
+          name: body
+          description: Effect name
+          required: true
+          schema:
+            type: object
+            properties:
+              fx:
+                type: string
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: string
