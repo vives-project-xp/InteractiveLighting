@@ -62,9 +62,9 @@ import dotenv from "dotenv";
           <h2>Speed</h2>
           <input type="range" id="speed" min="0" max="255" value="50" @input="getSpeedValue()" />
         </div>
-        <div class="grid-item-ledControls" id="ledSpiecesDiv">
+        <div class="grid-item-ledControls" id="ledpiecesDiv">
           <h2>Led Strip Pieces</h2>
-          <input type="range" id="ledSpieces" min="0" max="20" value="1" @input="getledSpiecesValue()" />
+          <input type="range" id="ledpieces" min="0" max="20" value="1" @input="getledPiecesValue()" />
         </div>
         <div class="grid-item-ledControls" id="randomEffectDiv">
           <h2>Random Effect</h2>
@@ -162,13 +162,13 @@ export default {
           console.error(error);
         });
     },
-    getledSpiecesValue() {
-      const ledSpieces = document.getElementById("ledSpieces").value;
+    getledPiecesValue() {
+      const ledpieces = document.getElementById("ledpieces").value;
       const payload = {
-        ledSpieces: parseInt(ledSpieces),
+        ledpieces: parseInt(ledpieces),
       };
       axios
-        .post(`${this.backendUrl}/ledSpieces`, payload)
+        .post(`${this.backendUrl}/ledpieces`, payload)
         .then((response) => {
           console.log(response);
         })
@@ -494,14 +494,14 @@ footer {
   background: rgb(155, 208, 183);
 }
 
-#ledSpiecesDiv {
+#ledpiecesDiv {
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
 }
 
-#ledSpieces {
+#ledpieces {
   appearance: none;
   width: 100%;
   height: 1.5vh;
@@ -512,7 +512,7 @@ footer {
   transition: opacity 0.2s;
 }
 
-#ledSpieces::-webkit-slider-thumb {
+#ledpieces::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 3.5vh;
@@ -522,13 +522,13 @@ footer {
   cursor: pointer;
 }
 
-#ledSpieces::-webkit-slider-thumb:hover {
+#ledpieces::-webkit-slider-thumb:hover {
   -webkit-appearance: none;
   background-color: rgb(217, 151, 116);
   transition: 1000ms;
 }
 
-#ledSpieces::-moz-range-thumb {
+#ledpieces::-moz-range-thumb {
   width: 1vw;
   height: 1vh;
   border-radius: 50%;
