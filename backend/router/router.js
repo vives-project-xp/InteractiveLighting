@@ -5,8 +5,35 @@ const mqtt = require('./mqtt.js');
 const router = express.Router();
 const baseTopic = process.env.MQTT_BASE_TOPIC + '/api';
 
+var ledpieces = 0;
+
 router.get('/', (req, res) => {
   res.send('Hello World!');
+});
+
+router.post('/speed', (req, res) => {
+  try {
+    const speed = req.body.speed;
+    const jsonPayload = { seg: [{ id: 0, sx: speed }] };
+    mqtt.publish(baseTopic, JSON.stringify(jsonPayload));
+    res.send('Speed published successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error publishing speed');
+  }
+});
+
+router.post('/ledpieces', (req, res) => {
+  try {
+    ledpieces = req.body.ledpieces;
+    var ledamount = ledpieces*4;
+    const jsonPayload = { seg: [{ id: 0, len: ledamount }] };
+    mqtt.publish(baseTopic, JSON.stringify(jsonPayload));
+    res.send('Ledpieces published successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error publishing ledpieces');
+  }
 });
 
 router.post('/onof', (req, res) => {
