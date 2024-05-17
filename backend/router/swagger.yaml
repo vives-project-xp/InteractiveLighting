@@ -10,19 +10,7 @@ tags:
 schemes:
   - http
 paths:
-  /:
-    get:
-      tags:
-        - Lighting
-      summary: Get status
-      description: Returns 'Hello World!' as a test response
-      produces:
-        - text/plain
-      responses:
-        200:
-          description: Successful operation
-          schema:
-            type: string
+  /onof:
     post:
       tags:
         - Lighting
@@ -44,9 +32,63 @@ paths:
         - text/plain
       responses:
         200:
-          description: Successful operation
+          description: onof published successfully
           schema:
             type: string
+  /speed:
+    post:
+      tags:
+        - Lighting
+      summary: Update speed
+      description: |
+        Adjusts the speed of the lighting system.
+        Example body: {"speed": 50}
+      parameters:
+        - in: body
+          name: body
+          description: Speed value (0-100)
+          required: true
+          schema:
+            type: object
+            properties:
+              speed:
+                type: integer
+                minimum: 1
+                maximum: 255
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: Speed published successfully
+          schema:
+            type: string
+  /ledpieces:
+   post:
+    tags:
+      - Lighting
+    summary: Updates the total amount of LED pieces that should be controlled
+    description: |
+      Publishes the total amount of LED pieces to the lighting system.
+      Example body: {"ledpieces": 50}
+    parameters:
+      in: body
+      name: body
+      description: Amount of LED pieces
+      required: true
+      schema:
+        type: object
+        properties:
+          ledpieces:
+            type: integer
+            minimum: 1
+            maximum: 20
+    produces:
+      - text/plain
+    responses:
+      200:
+        description: Published ledpieces successfully
+        schema:
+          type: string
   /color:
     post:
       tags:
@@ -106,7 +148,7 @@ paths:
               brightness:
                 type: integer
                 minimum: 0
-                maximum: 100
+                maximum: 255
       produces:
         - text/plain
       responses:
@@ -145,7 +187,7 @@ paths:
             type: object
             properties:
               fx:
-                type: string
+                type: int
       produces:
         - text/plain
       responses:

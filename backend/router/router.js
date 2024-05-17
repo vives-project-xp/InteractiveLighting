@@ -38,7 +38,7 @@ router.post('/ledpieces', (req, res) => {
 
 router.post('/onof', (req, res) => {
   try {
-  console.log(req.body);
+  
   mqtt.publish(baseTopic, "{'on':" + req.body.on + "}");
   res.send('Onof published successfully');
   } catch (error) {
@@ -119,3 +119,5 @@ router.get('/effect', (req, res) => {
 });
 
 module.exports = router;
+
+

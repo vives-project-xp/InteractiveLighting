@@ -89,6 +89,11 @@ import dotenv from "dotenv";
           <li>
             <i class="fa-solid fa-compass"></i> Vives Brugge Xaverianenstraat
           </li>
+          <li>
+            <a id="footerLink" :href="`${backendUrl}/api-docs`">
+              <i class="fa-brands fa-node-js"></i> Backend documentation
+            </a>
+          </li>
         </ul>
       </div>
     </div>

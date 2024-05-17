@@ -21,7 +21,7 @@ const options = {
           },
       ],
   },
-  apis: ["./router/router.js"],
+  apis: ["router/swagger.yaml"],
 };
 // Middleware setup
 app.use(cors({
