@@ -1,7 +1,9 @@
 import pyaudio
 import numpy as np
 import time
-from madmom.features.beats import RNNBeatProcessor
+import matplotlib.pyplot as plt
+import json
+import paho.mqtt.client as mqtt
 
 # Constants
 CHUNK_SIZE = 1024  # Number of frames per buffer
@@ -9,8 +11,32 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1  # Mono audio
 RATE = 44100  # Sampling rate in Hz
 
+# Define frequency bands with logarithmic scaling
+FREQUENCY_BANDS = {
+    'Sub-bass': (16, 60),
+    'Bass': (60, 250),
+    'Low mids': (250, 500),
+    'Mids': (500, 2000),
+    'High mids': (2000, 4000),
+    'Presence': (4000, 6000),
+    'Brilliance': (6000, 16000)
+}
+
+# MQTT Broker details
+MQTT_BROKER_HOST = "mqtt.devbit.be"
+MQTT_BROKER_PORT = 1883
+MQTT_USERNAME = ""
+MQTT_PASSWORD = ""
+MQTT_TOPIC = "IL"
+
 # Initialize PyAudio
 p = pyaudio.PyAudio()
+
+# Initialize MQTT Client
+mqtt_client = mqtt.Client()
+mqtt_client.username_pw_set(username=MQTT_USERNAME, password=MQTT_PASSWORD)
+mqtt_client.connect(MQTT_BROKER_HOST, MQTT_BROKER_PORT)
+mqtt_client.loop_start()
 
 # Open audio stream
 stream = p.open(format=FORMAT,
@@ -19,10 +45,16 @@ stream = p.open(format=FORMAT,
                 input=True,
                 frames_per_buffer=CHUNK_SIZE)
 
-# Initialize beat processor
-beat_processor = RNNBeatProcessor()
+# Initialize plot
+plt.ion()  # Turn on interactive mode
+fig, ax = plt.subplots()
+bars = ax.bar(FREQUENCY_BANDS.keys(), np.zeros(len(FREQUENCY_BANDS)), align='center')
+ax.set_ylabel('Magnitude (dB)')
+ax.set_title('Realtime Audio Equalizer')
+ax.set_ylim(0, 100)  # Adjust y-axis limit as needed
 
-print("Realtime BPM Detection")
+# Start updating plot
+plt.show()
 
 try:
     while True:
@@ -31,11 +63,44 @@ try:
         # Convert binary data to numpy array
         audio_signal = np.frombuffer(data, dtype=np.int16)
 
-        # Compute beats per minute (BPM)
-        bpm = beat_processor(audio_signal, fps=RATE)
+        # Apply FFT (Fast Fourier Transform) to get frequency spectrum
+        fft_result = np.fft.fft(audio_signal)
+        # Frequency bins corresponding to FFT result
+        freq_bins = np.fft.fftfreq(len(fft_result), 1.0 / RATE)
 
-        # Display BPM
-        print(f"BPM: {bpm:.2f}")
+        # Calculate magnitude of each frequency band
+        band_magnitudes = {}
+        for band, (low_freq, high_freq) in FREQUENCY_BANDS.items():
+            low_idx = np.where(freq_bins >= low_freq)[0][0]
+            high_idx = np.where(freq_bins >= high_freq)[0][0]
+            band_mag = np.sum(np.abs(fft_result[low_idx:high_idx])) / CHUNK_SIZE
+            # Apply logarithmic scaling
+            band_mag_log = 10 * np.log10(band_mag + 1)
+            # Normalize to a value between 0 and 130
+            normalized_mag = np.clip((band_mag_log / 100.0) * 130, 0, 130)
+            band_magnitudes[band] = normalized_mag
+
+        # Update plot
+        for i, (band, mag) in enumerate(band_magnitudes.items()):
+            bars[i].set_height(mag)
+        fig.canvas.draw()
+        fig.canvas.flush_events()
+
+        # Create JSON payload for WLED
+        led_data = {
+            "seg": [{
+                "i": []
+            }]
+        }
+        led_index = 0
+        for band, mag in band_magnitudes.items():
+            brightness = int(mag)
+            for _ in range(8):  # 8 LEDs per frequency band
+                led_data["seg"][0]["i"].append([led_index, brightness])
+                led_index += 1
+
+        # Publish to MQTT
+        mqtt_client.publish(MQTT_TOPIC, json.dumps(led_data))
 
         # Add half-second delay
         time.sleep(0.5)
@@ -49,3 +114,7 @@ stream.close()
 
 # Terminate PyAudio
 p.terminate()
+
+# Disconnect MQTT Client
+mqtt_client.loop_stop()
+mqtt_client.disconnect()
