@@ -30,12 +30,12 @@ FREQUENCY_BANDS = {
 # Define colors for each frequency band
 COLORS = {
     'Sub-bass': 'FF0000',  # Red
-    'Bass': 'FF7F00',      # Orange
+    'Bass': 'FF9300',      # Orange
     'Low mids': 'FFFF00',  # Yellow
     'Mids': '00FF00',      # Green
     'High mids': '0000FF', # Blue
-    'Presence': '4B0082',  # Indigo
-    'Brilliance': '8F00FF' # Violet
+    'Presence': 'F000FF',  # Indigo
+    'Brilliance': 'FF0080' # Violet
 }
 
 def get_mqtt_info():
@@ -154,7 +154,7 @@ try:
         mqtt_client.publish(MQTT_TOPIC, json.dumps(mqtt_payload))
 
         # Add half-second delay
-        time.sleep(0.5)
+        time.sleep(0.02)
 
 except KeyboardInterrupt:
     print("Exiting...")
