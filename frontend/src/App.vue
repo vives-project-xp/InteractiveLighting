@@ -71,6 +71,4 @@ nav a {
 #navbarnolink {
   background-color: transparent;
 }
-
-
 </style>

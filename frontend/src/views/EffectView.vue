@@ -146,4 +146,30 @@ table {
   background-color: rgb(155, 208, 183);
   color: black;
 }
+
+
+/* ------ Custom Scrollbar ------ */
+
+/* Define the scrollbar style */
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+}
+
+/* Define the thumb style */
+::-webkit-scrollbar-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: wheat;
+  border-radius: 7px;
+}
+
+/* Define the track style */
+::-webkit-scrollbar-track {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+}
 </style>
