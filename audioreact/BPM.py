@@ -2,13 +2,15 @@ import pyaudio
 import numpy as np
 import time
 import matplotlib.pyplot as plt
-from madmom.features.onsets import peak_picking
+from scipy.ndimage import maximum_filter1d
 
 # Constants
 CHUNK_SIZE = 1024  # Number of frames per buffer
 FORMAT = pyaudio.paInt16
 CHANNELS = 1  # Mono audio
 RATE = 44100  # Sampling rate in Hz
+WINDOW_SIZE = 43  # Number of chunks to consider for BPM calculation
+PEAK_THRESHOLD = 1.5  # Threshold for peak detection (adjust as necessary)
 
 # Initialize PyAudio
 p = pyaudio.PyAudio()
@@ -23,13 +25,30 @@ stream = p.open(format=FORMAT,
 # Initialize plot
 plt.ion()  # Turn on interactive mode
 fig, ax = plt.subplots()
-line, = ax.plot([], [])
-ax.set_xlim(0, 60)  # Adjust x-axis limit as needed
-ax.set_ylim(0, 300)  # Adjust y-axis limit as needed
-ax.set_ylabel('Energy')
-ax.set_title('Beat Detection (BPM)')
-timestamps = []
-energies = []
+ax.set_title('Realtime BPM Detection')
+ax.set_ylim(0, 200)  # BPM range
+bpm_text = ax.text(0.5, 0.5, '', horizontalalignment='center', verticalalignment='center', transform=ax.transAxes, fontsize=30)
+
+# Function to calculate BPM
+def calculate_bpm(energy_buffer, rate):
+    # Detect peaks
+    peaks = maximum_filter1d(energy_buffer, size=3) == energy_buffer
+    peak_indices = np.where(peaks & (energy_buffer > PEAK_THRESHOLD))[0]
+    
+    # Calculate intervals between peaks
+    intervals = np.diff(peak_indices)
+    
+    # Calculate BPM
+    if len(intervals) > 0:
+        mean_interval = np.mean(intervals)
+        bpm = 60.0 / (mean_interval * CHUNK_SIZE / rate)
+    else:
+        bpm = 0
+    
+    return bpm
+
+# Energy buffer to store the energy values of the past WINDOW_SIZE chunks
+energy_buffer = np.zeros(WINDOW_SIZE)
 
 # Start updating plot
 plt.show()
@@ -40,31 +59,22 @@ try:
         data = stream.read(CHUNK_SIZE, exception_on_overflow=False)
         # Convert binary data to numpy array
         audio_signal = np.frombuffer(data, dtype=np.int16)
-
-        # Calculate energy of the audio signal
-        energy = np.sum(np.abs(audio_signal))
-
-        # Append current timestamp and energy to lists
-        timestamps.append(time.time())
-        energies.append(energy)
-
-        # Plot energy over time
-        line.set_xdata(timestamps)
-        line.set_ydata(energies)
+        
+        # Calculate the energy of the current chunk
+        energy = np.sum(audio_signal**2) / len(audio_signal)
+        
+        # Update energy buffer
+        energy_buffer = np.roll(energy_buffer, -1)
+        energy_buffer[-1] = energy
+        
+        # Calculate BPM
+        bpm = calculate_bpm(energy_buffer, RATE)
+        
+        # Update plot
+        bpm_text.set_text(f'BPM: {bpm:.2f}')
         fig.canvas.draw()
         fig.canvas.flush_events()
-
-        # Use Madmom's peak picking to detect onsets
-        onsets = peak_picking(energies, threshold=0.2, pre_avg=0.1, post_avg=0.1, pre_max=0.3, post_max=0.3)
-        if len(onsets) >= 2:
-            # Calculate time difference between consecutive onsets
-            time_diff = np.diff(onsets)
-            # Calculate median time difference
-            median_time_diff = np.median(time_diff)
-            # Convert median time difference to BPM
-            bpm = 60 / median_time_diff
-            print(f"BPM: {bpm:.2f}")
-
+        
         # Add half-second delay
         time.sleep(0.5)
 
