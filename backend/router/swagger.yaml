@@ -71,17 +71,17 @@ paths:
       Publishes the total amount of LED pieces to the lighting system.
       Example body: {"ledpieces": 50}
     parameters:
-      in: body
-      name: body
-      description: Amount of LED pieces
-      required: true
-      schema:
-        type: object
-        properties:
-          ledpieces:
-            type: integer
-            minimum: 1
-            maximum: 20
+      - in: body
+        name: body
+        description: Amount of LED pieces
+        required: true
+        schema:
+          type: object
+          properties:
+            ledpieces:
+              type: integer
+              minimum: 1
+              maximum: 20
     produces:
       - text/plain
     responses:
@@ -177,21 +177,21 @@ paths:
       summary: Activate effect
       description: |
         Activates a specific lighting effect.
-        Example body: {"fx": "rainbow"}
+        Example body: {"fx": 1}
       parameters:
         - in: body
           name: body
-          description: Effect name
+          description: Effect id
           required: true
           schema:
             type: object
             properties:
               fx:
-                type: int
+                type: integer
       produces:
-        - text/plain
+        - integer
       responses:
         200:
           description: Successful operation
           schema:
-            type: string
+            type: int
