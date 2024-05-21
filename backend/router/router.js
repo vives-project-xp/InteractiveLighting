@@ -5,13 +5,40 @@ const mqtt = require('./mqtt.js');
 const router = express.Router();
 const baseTopic = process.env.MQTT_BASE_TOPIC + '/api';
 
+var ledpieces = 0;
+
 router.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+router.post('/speed', (req, res) => {
+  try {
+    const speed = req.body.speed;
+    const jsonPayload = { seg: [{ id: 0, sx: speed }] };
+    mqtt.publish(baseTopic, JSON.stringify(jsonPayload));
+    res.send('Speed published successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error publishing speed');
+  }
+});
+
+router.post('/ledpieces', (req, res) => {
+  try {
+    ledpieces = req.body.ledpieces;
+    var ledamount = ledpieces*4;
+    const jsonPayload = { seg: [{start:0,stop:ledamount,len:ledamount }] };
+    mqtt.publish(baseTopic, JSON.stringify(jsonPayload));
+    res.send('Ledpieces published successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error publishing ledpieces');
+  }
+});
+
 router.post('/onof', (req, res) => {
   try {
-  console.log(req.body);
+  
   mqtt.publish(baseTopic, "{'on':" + req.body.on + "}");
   res.send('Onof published successfully');
   } catch (error) {
@@ -50,7 +77,7 @@ router.post('/color', (req, res) => {
 
 router.post('/random', (req, res) => {
   try {
-    const jsonPayload = { seg: [{ id: 0, on: "true", fx: "r" }] };
+    const jsonPayload = { seg: [{ id: 0,  fx: "r" }] };
     mqtt.publish(baseTopic, JSON.stringify(jsonPayload));
     res.send('Random published successfully');
   } catch (error) {
@@ -77,7 +104,7 @@ router.post('/effect', (req, res) => {
   try {
   console.log(req.body);
   const effect = req.body;
-  const jsonPayload = { seg: [{ id: 0, on: "true", fx: effect.fx }] };
+  const jsonPayload = { seg: [{ id: 0, fx: effect.fx }] };
   mqtt.publish(baseTopic, JSON.stringify(jsonPayload));
   res.send('Effect published successfully');
   } catch (error) {
@@ -92,3 +119,5 @@ router.get('/effect', (req, res) => {
 });
 
 module.exports = router;
+
+

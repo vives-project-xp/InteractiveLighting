@@ -36,6 +36,7 @@ p = pyaudio.PyAudio()
 mqtt_client = mqtt.Client()
 mqtt_client.username_pw_set(username=MQTT_USERNAME, password=MQTT_PASSWORD)
 mqtt_client.connect(MQTT_BROKER_HOST, MQTT_BROKER_PORT)
+mqtt_client.loop_start()
 
 # Open audio stream
 stream = p.open(format=FORMAT,
@@ -74,8 +75,10 @@ try:
             high_idx = np.where(freq_bins >= high_freq)[0][0]
             band_mag = np.sum(np.abs(fft_result[low_idx:high_idx])) / CHUNK_SIZE
             # Apply logarithmic scaling
-            band_mag_log = ((10 * np.log10(band_mag + 1))**2)/23
-            band_magnitudes[band] = band_mag_log
+            band_mag_log = 10 * np.log10(band_mag + 1)
+            # Normalize to a value between 0 and 130
+            normalized_mag = np.clip((band_mag_log / 100.0) * 130, 0, 130)
+            band_magnitudes[band] = normalized_mag
 
         # Update plot
         for i, (band, mag) in enumerate(band_magnitudes.items()):
@@ -83,15 +86,28 @@ try:
         fig.canvas.draw()
         fig.canvas.flush_events()
 
-        # Publish frequency band magnitudes to MQTT as JSON
-        mqtt_client.publish(MQTT_TOPIC, json.dumps(band_magnitudes))
+        # Create JSON payload for WLED
+        led_data = {
+            "seg": [{
+                "i": []
+            }]
+        }
+        led_index = 0
+        for band, mag in band_magnitudes.items():
+            brightness = int(mag)
+            for _ in range(8):  # 8 LEDs per frequency band
+                led_data["seg"][0]["i"].append([led_index, brightness])
+                led_index += 1
 
-        
-        
+        # Publish to MQTT
+        mqtt_client.publish(MQTT_TOPIC, json.dumps(led_data))
+
+        # Add half-second delay
+        time.sleep(0.5)
 
 except KeyboardInterrupt:
     print("Exiting...")
-o
+
 # Close the audio stream
 stream.stop_stream()
 stream.close()
@@ -100,4 +116,5 @@ stream.close()
 p.terminate()
 
 # Disconnect MQTT Client
+mqtt_client.loop_stop()
 mqtt_client.disconnect()

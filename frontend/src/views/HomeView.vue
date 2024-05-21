@@ -19,48 +19,26 @@ import dotenv from "dotenv";
         <h2 class="grid-item-colorSettings" id="titelColor">Color</h2>
         <!-- Colorpicker -->
         <!-- <div class="grid-item-colorSettings" id="colorpickerdiv"> -->
-        <input
-          type="color"
-          class="grid-item-colorSettings"
-          id="colorpicker"
-          value="#ffa31a"
-          @input="UpdateColorValue()"
-        />
+        <input type="color" value="#ffa31a" @input="UpdateColorValue()" class="grid-item-colorSettings" id="colorpicker"/>
         <!-- </div> -->
         <!-- primary color buttons -->
         <div class="grid-item-colorSettings">
-          <button
-            class="primary-color-btn"
-            id="primary-btn-red"
-            @click="ChangeColorValue('#ff0000')"
-          >
+          <button class="primary-color-btn" id="primary-btn-red" @click="ChangeColorValue('#ff0000')">
             Red
           </button>
         </div>
         <div class="grid-item-colorSettings">
-          <button
-            class="primary-color-btn"
-            id="primary-btn-blue"
-            @click="ChangeColorValue('#0000ff')"
-          >
+          <button class="primary-color-btn" id="primary-btn-blue" @click="ChangeColorValue('#0000ff')">
             Blue
           </button>
         </div>
         <div class="grid-item-colorSettings">
-          <button
-            class="primary-color-btn"
-            id="primary-btn-green"
-            @click="ChangeColorValue('#00ff00')"
-          >
+          <button class="primary-color-btn" id="primary-btn-green" @click="ChangeColorValue('#00ff00')">
             Green
           </button>
         </div>
         <div class="grid-item-colorSettings">
-          <button
-            class="primary-color-btn"
-            id="primary-btn-white"
-            @click="ChangeColorValue('#ffffff')"
-          >
+          <button class="primary-color-btn" id="primary-btn-white" @click="ChangeColorValue('#ffffff')">
             White
           </button>
         </div>
@@ -72,35 +50,26 @@ import dotenv from "dotenv";
         </h2>
         <div class="grid-item-ledControls" id="onOffDiv">
           <h2>On/Off</h2>
-          <button
-            type="button"
-            class="btnLedSettings"
-            id="onOffbtn"
-            @click="toggleLed()"
-          >
+          <button type="button" class="btnLedSettings" id="onOffbtn" @click="toggleLed()">
             <i id="OnOffIcon" style="font-size: 24px" class="fa">&#xf011;</i>
           </button>
         </div>
         <div class="grid-item-ledControls" id="brightnessDiv">
           <h2>Brightness</h2>
-          <input
-            type="range"
-            id="brightness"
-            min="0"
-            max="255"
-            value="50"
-            @input="getBrightnessValue()"
-          />
+          <input type="range" id="brightness" min="0" max="255" value="50" @input="getBrightnessValue()" />
+        </div>
+        <div class="grid-item-ledControls" id="speedDiv">
+          <h2>Speed</h2>
+          <input type="range" id="speed" min="0" max="255" value="50" @input="getSpeedValue()" />
+        </div>
+        <div class="grid-item-ledControls" id="ledpiecesDiv">
+          <h2>Led Strip Pieces</h2>
+          <input type="range" id="ledpieces" min="0" max="20" value="1" @input="getledPiecesValue()" />
         </div>
         <div class="grid-item-ledControls" id="randomEffectDiv">
           <h2>Random Effect</h2>
           <br />
-          <button
-            type="button"
-            class="btnLedSettings"
-            id="randomEffectbtn"
-            @click="setRandomEffect()"
-          >
+          <button type="button" class="btnLedSettings" id="randomEffectbtn" @click="setRandomEffect()">
             <i class="gg-dice-6"></i>
           </button>
         </div>
@@ -114,14 +83,16 @@ import dotenv from "dotenv";
         <h2>Contact Us</h2>
         <ul>
           <li>
-            <a
-              id="footerLink"
-              href="https://github.com/vives-project-xp/InteractiveLighting"
-              ><i class="fa-brands fa-github"></i> Github</a
-            >
+            <a id="footerLink" href="https://github.com/vives-project-xp/InteractiveLighting" target="_blank"><i
+                class="fa-brands fa-github"></i> Github</a>
           </li>
           <li>
             <i class="fa-solid fa-compass"></i> Vives Brugge Xaverianenstraat
+          </li>
+          <li>
+            <a id="footerLink" :href="`${backendUrl}/api-docs`">
+              <i class="fa-brands fa-node-js"></i> Backend documentation
+            </a>
           </li>
         </ul>
       </div>
@@ -175,6 +146,34 @@ export default {
       };
       axios
         .post(`${this.backendUrl}/brightness`, payload)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    getSpeedValue() {
+      const speed = document.getElementById("speed").value;
+      const payload = {
+        speed: parseInt(speed),
+      };
+      axios
+        .post(`${this.backendUrl}/speed`, payload)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    getledPiecesValue() {
+      const ledpieces = document.getElementById("ledpieces").value;
+      const payload = {
+        ledpieces: parseInt(ledpieces),
+      };
+      axios
+        .post(`${this.backendUrl}/ledpieces`, payload)
         .then((response) => {
           console.log(response);
         })
@@ -236,7 +235,7 @@ body {
 }
 
 main {
-  height: 75%;
+  height: min-content;
   width: 100%;
   padding: 2vh 0vh 2vh 0vh;
   margin: 2vh 0vh 2vh 0vh;
@@ -269,16 +268,19 @@ footer {
 
 .leds {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
 }
 
 .ledControls {
   width: 50%;
-  height: 55vh;
+  height: 100%;
   justify-content: center;
   align-items: center;
-  padding: 0.5%;
 }
 
 #colorSettings {
@@ -288,7 +290,6 @@ footer {
   gap: 5px;
   justify-content: center;
   align-items: center;
-  margin-right: 2%;
 }
 
 #titelColor {
@@ -304,11 +305,24 @@ footer {
 }
 
 #colorpicker {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   width: 100%;
   height: 100%;
   grid-area: span 4 / span 3;
-  border-radius: 20px;
-  display: block;
+  background-color: transparent;
+  border: none;
+}
+
+#colorpicker::-webkit-color-swatch {
+  border-radius: 7px;
+  border: none;
+}
+
+#colorpicker::-moz-color-swatch {
+  border-radius: 7px;
+  border: none;
 }
 
 .primary-color-btn {
@@ -316,7 +330,7 @@ footer {
   height: 100%;
   background-color: transparent;
   border: none;
-  border-radius: 5px;
+  border-radius: 7px;
   font-size: 2.5vh;
   color: black;
   font-weight: 900;
@@ -359,11 +373,7 @@ footer {
 }
 
 #ledSettings {
-  display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  gap: 5%;
-  justify-content: center;
-  align-items: center;
+  padding: 0 10%;
 }
 
 .grid-item-ledControls {
@@ -378,6 +388,7 @@ footer {
 .btnLedSettings {
   background-color: transparent;
   border: none;
+  height: 3rem;
 }
 
 #onOffDiv {
@@ -389,7 +400,6 @@ footer {
 
 #onOffbtn {
   width: 100%;
-  height: 50%;
   background-color: rgb(155, 208, 183);
   justify-content: center;
   align-items: center;
@@ -414,7 +424,8 @@ footer {
   height: 100%;
 }
 
-#brightnessslider {
+#brightness {
+  appearance: none;
   width: 100%;
   height: 1.5vh;
   border-radius: 5px;
@@ -424,7 +435,7 @@ footer {
   transition: opacity 0.2s;
 }
 
-#brightnessslider::-webkit-slider-thumb {
+#brightness::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 3.5vh;
@@ -434,12 +445,95 @@ footer {
   cursor: pointer;
 }
 
-#brightnessslider::-webkit-slider-thumb:hover {
+#brightness::-webkit-slider-thumb:hover {
+  -webkit-appearance: none;
   background-color: rgb(217, 151, 116);
   transition: 1000ms;
 }
 
-#brightnessslider::-moz-range-thumb {
+#brightness::-moz-range-thumb {
+  width: 1vw;
+  height: 1vh;
+  border-radius: 50%;
+  background: rgb(155, 208, 183);
+}
+
+#speedDiv {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#speed {
+  appearance: none;
+  width: 100%;
+  height: 1.5vh;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+#speed::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 3.5vh;
+  height: 3.5vh;
+  border-radius: 50%;
+  background: rgb(155, 208, 183);
+  cursor: pointer;
+}
+
+#speed::-webkit-slider-thumb:hover {
+  -webkit-appearance: none;
+  background-color: rgb(217, 151, 116);
+  transition: 1000ms;
+}
+
+#speed::-moz-range-thumb {
+  width: 1vw;
+  height: 1vh;
+  border-radius: 50%;
+  background: rgb(155, 208, 183);
+}
+
+#ledpiecesDiv {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#ledpieces {
+  appearance: none;
+  width: 100%;
+  height: 1.5vh;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+#ledpieces::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 3.5vh;
+  height: 3.5vh;
+  border-radius: 50%;
+  background: rgb(155, 208, 183);
+  cursor: pointer;
+}
+
+#ledpieces::-webkit-slider-thumb:hover {
+  -webkit-appearance: none;
+  background-color: rgb(217, 151, 116);
+  transition: 1000ms;
+}
+
+#ledpieces::-moz-range-thumb {
   width: 1vw;
   height: 1vh;
   border-radius: 50%;
@@ -455,7 +549,6 @@ footer {
 
 #randomEffectbtn {
   width: 100%;
-  height: 50%;
   background-color: rgb(155, 208, 183);
   justify-content: center;
   align-items: center;
@@ -509,10 +602,34 @@ footer {
 
   .ledControls {
     width: 100%;
-    height: 55vh;
     justify-content: center;
     align-items: center;
     padding: 0.5%;
   }
+}
+
+/* ------ Custom Scrollbar ------ */
+
+/* Define the scrollbar style */
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+}
+
+/* Define the thumb style */
+::-webkit-scrollbar-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: wheat;
+  border-radius: 7px;
+}
+
+/* Define the track style */
+::-webkit-scrollbar-track {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
 }
 </style>

@@ -4,6 +4,7 @@
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Project Goals](#project-goals)
 - [Features](#features)
@@ -17,6 +18,7 @@
           - [About Page](#about-page)
           - [Reactive Sound Integration](#reactive-sound-integration)
 - [Installation and Setup](#installation-and-setup)
+- [Usage Guide](#usage-guide)
 - [End Conclusion](#end-conclusion)
 - [Members](#members)
 
