@@ -8,10 +8,10 @@ import tkinter as tk
 import threading
 
 # Constants
-BUFFER_SIZE = 1024
+BUFFER_SIZE = 512
 SAMPLE_RATE = 44100
 DEFAULT_BRIGHTNESS_FLASH = 255
-DEFAULT_BRIGHTNESS_NORMAL = 0
+DEFAULT_BRIGHTNESS_NORMAL = 50
 DEFAULT_FLASH_DURATION = 0.2
 
 # Initialize PyAudio
@@ -53,13 +53,17 @@ def flash_lights():
 
 # Beat detection function to be run in a separate thread
 def beat_detection():
-    global running
     connect_mqtt(mqtt_broker.get(), mqtt_port.get(), mqtt_username.get(), mqtt_password.get())
 
     print("Listening for beats...")
     try:
         while running:
-            audio_data = stream.read(BUFFER_SIZE)
+            try:
+                audio_data = stream.read(BUFFER_SIZE, exception_on_overflow=False)
+            except IOError as e:
+                print(f"Error reading audio data: {e}")
+                continue
+
             audio_samples = np.frombuffer(audio_data, dtype=np.float32)
 
             is_beat = beat_detector(audio_samples)
@@ -70,19 +74,25 @@ def beat_detection():
         print(f"Error: {e}")
 
     finally:
-        stream.stop_stream()
-        stream.close()
-        p.terminate()
+        print("Closing the MQTT connection")
         client.loop_stop()
         client.disconnect()
 
 # Start and stop functions for the beat detection thread
 def start_beat_detection():
-    global running
+    global running, beat_thread
     running = True
     beat_thread = threading.Thread(target=beat_detection)
     beat_thread.start()
 
+def stop_beat_detection():
+    global running
+    running = False
+    beat_thread.join()
+
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
 
 # Create main window
 root = tk.Tk()
