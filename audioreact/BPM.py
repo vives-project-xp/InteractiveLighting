@@ -1,89 +1,133 @@
+import aubio
 import pyaudio
 import numpy as np
+import paho.mqtt.client as mqtt
+import json
 import time
-import matplotlib.pyplot as plt
-from scipy.ndimage import maximum_filter1d
+import tkinter as tk
+import threading
 
 # Constants
-CHUNK_SIZE = 1024  # Number of frames per buffer
-FORMAT = pyaudio.paInt16
-CHANNELS = 1  # Mono audio
-RATE = 44100  # Sampling rate in Hz
-WINDOW_SIZE = 43  # Number of chunks to consider for BPM calculation
-PEAK_THRESHOLD = 1.5  # Threshold for peak detection (adjust as necessary)
+BUFFER_SIZE = 1024
+SAMPLE_RATE = 44100
+DEFAULT_BRIGHTNESS_FLASH = 255
+DEFAULT_BRIGHTNESS_NORMAL = 0
+DEFAULT_FLASH_DURATION = 0.2
 
 # Initialize PyAudio
 p = pyaudio.PyAudio()
-
-# Open audio stream
-stream = p.open(format=FORMAT,
-                channels=CHANNELS,
-                rate=RATE,
+stream = p.open(format=pyaudio.paFloat32,
+                channels=1,
+                rate=SAMPLE_RATE,
                 input=True,
-                frames_per_buffer=CHUNK_SIZE)
+                frames_per_buffer=BUFFER_SIZE)
 
-# Initialize plot
-plt.ion()  # Turn on interactive mode
-fig, ax = plt.subplots()
-ax.set_title('Realtime BPM Detection')
-ax.set_ylim(0, 200)  # BPM range
-bpm_text = ax.text(0.5, 0.5, '', horizontalalignment='center', verticalalignment='center', transform=ax.transAxes, fontsize=30)
+# Initialize aubio's beat detection
+beat_detector = aubio.tempo("default", BUFFER_SIZE, BUFFER_SIZE, SAMPLE_RATE)
 
-# Function to calculate BPM
-def calculate_bpm(energy_buffer, rate):
-    # Detect peaks
-    peaks = maximum_filter1d(energy_buffer, size=3) == energy_buffer
-    peak_indices = np.where(peaks & (energy_buffer > PEAK_THRESHOLD))[0]
-    
-    # Calculate intervals between peaks
-    intervals = np.diff(peak_indices)
-    
-    # Calculate BPM
-    if len(intervals) > 0:
-        mean_interval = np.mean(intervals)
-        bpm = 60.0 / (mean_interval * CHUNK_SIZE / rate)
-    else:
-        bpm = 0
-    
-    return bpm
+# Set up MQTT client
+client = mqtt.Client()
 
-# Energy buffer to store the energy values of the past WINDOW_SIZE chunks
-energy_buffer = np.zeros(WINDOW_SIZE)
+def on_connect(client, userdata, flags, rc):
+    print(f"Connected to MQTT broker with code {rc}")
 
-# Start updating plot
-plt.show()
+client.on_connect = on_connect
 
-try:
-    while True:
-        # Read audio data from the stream
-        data = stream.read(CHUNK_SIZE, exception_on_overflow=False)
-        # Convert binary data to numpy array
-        audio_signal = np.frombuffer(data, dtype=np.int16)
-        
-        # Calculate the energy of the current chunk
-        energy = np.sum(audio_signal**2) / len(audio_signal)
-        
-        # Update energy buffer
-        energy_buffer = np.roll(energy_buffer, -1)
-        energy_buffer[-1] = energy
-        
-        # Calculate BPM
-        bpm = calculate_bpm(energy_buffer, RATE)
-        
-        # Update plot
-        bpm_text.set_text(f'BPM: {bpm:.2f}')
-        fig.canvas.draw()
-        fig.canvas.flush_events()
-        
-        # Add half-second delay
-        time.sleep(0.5)
+def connect_mqtt(broker, port, username, password):
+    if username and password:
+        client.username_pw_set(username, password)
+    client.connect(broker, int(port), 60)
+    client.loop_start()
 
-except KeyboardInterrupt:
-    print("Exiting...")
+# Function to flash lights
+def flash_lights():
+    flash_message = json.dumps({"bri": brightness_flash.get()})
+    client.publish(mqtt_topic.get(), flash_message)
+    print("Lights flashed!")
 
-# Close the audio stream
-stream.stop_stream()
-stream.close()
+    time.sleep(float(flash_duration.get()))
 
-# Terminate PyAudio
-p.terminate()
+    normal_message = json.dumps({"bri": brightness_normal.get()})
+    client.publish(mqtt_topic.get(), normal_message)
+    print("Lights returned to normal brightness.")
+
+# Beat detection function to be run in a separate thread
+def beat_detection():
+    global running
+    connect_mqtt(mqtt_broker.get(), mqtt_port.get(), mqtt_username.get(), mqtt_password.get())
+
+    print("Listening for beats...")
+    try:
+        while running:
+            audio_data = stream.read(BUFFER_SIZE)
+            audio_samples = np.frombuffer(audio_data, dtype=np.float32)
+
+            is_beat = beat_detector(audio_samples)
+            if is_beat:
+                flash_lights()
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+    finally:
+        stream.stop_stream()
+        stream.close()
+        p.terminate()
+        client.loop_stop()
+        client.disconnect()
+
+# Start and stop functions for the beat detection thread
+def start_beat_detection():
+    global running
+    running = True
+    beat_thread = threading.Thread(target=beat_detection)
+    beat_thread.start()
+
+
+# Create main window
+root = tk.Tk()
+root.title("Beat Detection and Light Control")
+
+# MQTT Settings
+tk.Label(root, text="MQTT Broker:").grid(row=0, column=0)
+mqtt_broker = tk.Entry(root)
+mqtt_broker.grid(row=0, column=1)
+
+tk.Label(root, text="MQTT Port:").grid(row=1, column=0)
+mqtt_port = tk.Entry(root)
+mqtt_port.grid(row=1, column=1)
+
+tk.Label(root, text="MQTT Username:").grid(row=2, column=0)
+mqtt_username = tk.Entry(root)
+mqtt_username.grid(row=2, column=1)
+
+tk.Label(root, text="MQTT Password:").grid(row=3, column=0)
+mqtt_password = tk.Entry(root, show='*')
+mqtt_password.grid(row=3, column=1)
+
+tk.Label(root, text="MQTT Topic:").grid(row=4, column=0)
+mqtt_topic = tk.Entry(root)
+mqtt_topic.grid(row=4, column=1)
+
+# Brightness Settings
+tk.Label(root, text="Flash Brightness:").grid(row=5, column=0)
+brightness_flash = tk.Scale(root, from_=0, to=255, orient=tk.HORIZONTAL)
+brightness_flash.set(DEFAULT_BRIGHTNESS_FLASH)
+brightness_flash.grid(row=5, column=1)
+
+tk.Label(root, text="Normal Brightness:").grid(row=6, column=0)
+brightness_normal = tk.Scale(root, from_=0, to=255, orient=tk.HORIZONTAL)
+brightness_normal.set(DEFAULT_BRIGHTNESS_NORMAL)
+brightness_normal.grid(row=6, column=1)
+
+# Flash Duration
+tk.Label(root, text="Flash Duration (s):").grid(row=7, column=0)
+flash_duration = tk.Entry(root)
+flash_duration.insert(0, DEFAULT_FLASH_DURATION)
+flash_duration.grid(row=7, column=1)
+
+# Start and Stop Buttons
+start_button = tk.Button(root, text="Start", command=start_beat_detection)
+start_button.grid(row=8, column=0, columnspan=2)
+
+root.mainloop()
